@@ -14,7 +14,7 @@ class MainTabBarVC: UITabBarController {
     private let homeVC: UIViewController = {
         let homeVC = HomeVC()
         let homeNavigation = UINavigationController(rootViewController: homeVC)
-        homeVC.tabBarItem = UITabBarItem(title: "Trang chủ", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        homeNavigation.tabBarItem = UITabBarItem(title: "Trang chủ", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         return homeNavigation
     }()
         
@@ -22,14 +22,14 @@ class MainTabBarVC: UITabBarController {
     private let historyVC: UIViewController = {
         let vc = HistoryVC()
         let nav = UINavigationController(rootViewController: vc)
-        vc.tabBarItem = UITabBarItem(title: "Lịch sử", image: UIImage(systemName: "arrow.clockwise.circle"), selectedImage: UIImage(systemName: "arrow.clockwise.circle.fill"))
+        nav.tabBarItem = UITabBarItem(title: "Lịch sử", image: UIImage(systemName: "arrow.clockwise.circle"), selectedImage: UIImage(systemName: "arrow.clockwise.circle.fill"))
         return nav
     }()
     
     private let settingVC: UIViewController = {
         let vc = SettingVC()
         let nav = UINavigationController(rootViewController: vc)
-        vc.tabBarItem = UITabBarItem(title: "Cài đặt", image: UIImage(systemName: "gearshape"), selectedImage: UIImage(systemName: "gearshape.fill"))
+        nav.tabBarItem = UITabBarItem(title: "Cài đặt", image: UIImage(systemName: "gearshape"), selectedImage: UIImage(systemName: "gearshape.fill"))
         return nav
     }()
     
@@ -45,17 +45,19 @@ class AppCoordinator {
     static let shared = AppCoordinator()
     var window: UIWindow!
     
+    private init() {}
+    
     func bind(window: UIWindow) {
         self.window = window
-//        if AppDataManager.shared.data.hasOnboard {
-//            goToOnboard()
-//        } else {
+        if !AppConfig.shared.isOnboard {
+            goToOnboard()
+        } else {
             goToMainVC()
-//        }
+        }
     }
     
     func goToOnboard() {
-//        window.rootViewController = AuthenVC()
+        window.rootViewController = UpdateUserInfoVCViewController()
     }
     
     func goToMainVC() {

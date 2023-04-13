@@ -100,9 +100,9 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
         case .targetDrink:
             return "\(Setting.shared.drinkTarget)"
         case .gender:
-            return "\(Setting.shared.userInfo.gender.rawValue)"
+            return "\(UserInfo.shared.gender.rawValue)"
         case .weight:
-            return "\(Setting.shared.userInfo.weight) \(Setting.shared.weightDonVi)"
+            return "\(UserInfo.shared.weight) \(Setting.shared.weightDonVi)"
         case .timeWakeUp:
             return "06:10"
         case .timeGoToSleep:

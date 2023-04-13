@@ -30,7 +30,10 @@
 		981B7B2429D6C81A0011D9EE /* SettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981B7B2229D6C81A0011D9EE /* SettingVC.xib */; };
 		981B7B2829D6C8490011D9EE /* OnboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B7B2629D6C8490011D9EE /* OnboardVC.swift */; };
 		981B7B2929D6C8490011D9EE /* OnboardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981B7B2729D6C8490011D9EE /* OnboardVC.xib */; };
-		98D87FB329D6C9860076511F /* AppDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D87FB229D6C9860076511F /* AppDataManager.swift */; };
+		987A13F329E7E2B4006845A7 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987A13F229E7E2B4006845A7 /* UserInfo.swift */; };
+		987A13F529E7E2C1006845A7 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987A13F429E7E2C1006845A7 /* AppConfig.swift */; };
+		987A13F729E7EAD1006845A7 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987A13F629E7EAD1006845A7 /* Drink.swift */; };
+		98D87FB329D6C9860076511F /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D87FB229D6C9860076511F /* UserDefaultService.swift */; };
 		98D87FB529D6CC600076511F /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D87FB429D6CC600076511F /* DateCell.swift */; };
 		98D87FB829D6D5540076511F /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D87FB629D6D5540076511F /* ReportCell.swift */; };
 		98D87FB929D6D5540076511F /* ReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D87FB729D6D5540076511F /* ReportCell.xib */; };
@@ -71,7 +74,10 @@
 		981B7B2229D6C81A0011D9EE /* SettingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingVC.xib; sourceTree = "<group>"; };
 		981B7B2629D6C8490011D9EE /* OnboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardVC.swift; sourceTree = "<group>"; };
 		981B7B2729D6C8490011D9EE /* OnboardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardVC.xib; sourceTree = "<group>"; };
-		98D87FB229D6C9860076511F /* AppDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDataManager.swift; sourceTree = "<group>"; };
+		987A13F229E7E2B4006845A7 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		987A13F429E7E2C1006845A7 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		987A13F629E7EAD1006845A7 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
+		98D87FB229D6C9860076511F /* UserDefaultService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
 		98D87FB429D6CC600076511F /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		98D87FB629D6D5540076511F /* ReportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
 		98D87FB729D6D5540076511F /* ReportCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportCell.xib; sourceTree = "<group>"; };
@@ -119,8 +125,8 @@
 		981B7AE729D6C4F50011D9EE /* Drink Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				987A13F129E7E29C006845A7 /* Service */,
 				98D87FBA29D719870076511F /* Model */,
-				98D87FB229D6C9860076511F /* AppDataManager.swift */,
 				981B7B0C29D6C66A0011D9EE /* BaseView */,
 				981B7AFD29D6C61C0011D9EE /* Extension */,
 				981B7AFC29D6C5DE0011D9EE /* ViewControlers */,
@@ -211,10 +217,21 @@
 			path = Onboard;
 			sourceTree = "<group>";
 		};
+		987A13F129E7E29C006845A7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				98D87FB229D6C9860076511F /* UserDefaultService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		98D87FBA29D719870076511F /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				98D87FBB29D719940076511F /* Setting.swift */,
+				987A13F229E7E2B4006845A7 /* UserInfo.swift */,
+				987A13F429E7E2C1006845A7 /* AppConfig.swift */,
+				987A13F629E7EAD1006845A7 /* Drink.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -387,9 +404,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				981B7B0929D6C61C0011D9EE /* CGFLoat+Ext.swift in Sources */,
+				987A13F529E7E2C1006845A7 /* AppConfig.swift in Sources */,
 				981B7B0829D6C61C0011D9EE /* UIColor+Ext.swift in Sources */,
 				981B7AED29D6C4F50011D9EE /* ViewController.swift in Sources */,
 				98D87FC029D71A640076511F /* UpdateUserInfoVCViewController.swift in Sources */,
+				987A13F329E7E2B4006845A7 /* UserInfo.swift in Sources */,
 				981B7AE929D6C4F50011D9EE /* AppDelegate.swift in Sources */,
 				981B7B1B29D6C7F80011D9EE /* HomeVC.swift in Sources */,
 				981B7B0B29D6C61C0011D9EE /* UIView+ext.swift in Sources */,
@@ -404,7 +423,8 @@
 				98D87FB529D6CC600076511F /* DateCell.swift in Sources */,
 				981B7B0629D6C61C0011D9EE /* UITableView+ext.swift in Sources */,
 				98D87FC529D71E140076511F /* SettingReminderVC.swift in Sources */,
-				98D87FB329D6C9860076511F /* AppDataManager.swift in Sources */,
+				987A13F729E7EAD1006845A7 /* Drink.swift in Sources */,
+				98D87FB329D6C9860076511F /* UserDefaultService.swift in Sources */,
 				98D87FB829D6D5540076511F /* ReportCell.swift in Sources */,
 				98D87FC929D723B60076511F /* CupSizeVC.swift in Sources */,
 				981B7B1029D6C66A0011D9EE /* BaseView.swift in Sources */,
