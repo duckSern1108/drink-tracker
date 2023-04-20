@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HistoryVC" customModule="Drink_Tracker" customModuleProvider="target">
             <connections>
                 <outlet property="calendarCollectionView" destination="6ki-jr-HGt" id="XSi-c8-B0x"/>
+                <outlet property="reportPerWeekView" destination="TlM-AG-1OQ" id="HxH-go-rOk"/>
                 <outlet property="reportTableView" destination="tFa-mJ-akq" id="FTE-RX-04T"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -41,7 +42,6 @@
                             </collectionViewFlowLayout>
                         </collectionView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="6ki-jr-HGt" firstAttribute="top" secondItem="jgV-bR-rsw" secondAttribute="bottom" constant="8" id="4OX-RR-vez"/>
                         <constraint firstItem="jgV-bR-rsw" firstAttribute="leading" secondItem="TlM-AG-1OQ" secondAttribute="leading" constant="8" id="AXD-y0-6LG"/>

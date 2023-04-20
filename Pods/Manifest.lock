@@ -1,16 +1,20 @@
 PODS:
   - SnapKit (5.6.0)
+  - SwiftDate (5.1.0)
 
 DEPENDENCIES:
   - SnapKit
+  - SwiftDate (~> 5.0)
 
 SPEC REPOS:
   trunk:
     - SnapKit
+    - SwiftDate
 
 SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
 
-PODFILE CHECKSUM: e6a8f23b5e5f4af7d2ea10a5dfe074c94c51c58e
+PODFILE CHECKSUM: 3fb084c210489d570234f9da105289b9671f8661
 
 COCOAPODS: 1.11.3

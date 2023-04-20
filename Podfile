@@ -7,5 +7,6 @@ target 'Drink Tracker' do
 
   # Pods for Drink Tracker
   pod 'SnapKit'
+  pod 'SwiftDate', '~> 5.0'
 
 end

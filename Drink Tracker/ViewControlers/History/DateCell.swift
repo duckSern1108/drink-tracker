@@ -10,12 +10,11 @@ import SnapKit
 
 
 class DateCell: UICollectionViewCell {
-    var imgView: UIImageView = UIImageView()
+    var imgView: UIImageView = UIImageView(image: UIImage(named: "cup"))
     var customLabel: UILabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .yellow
         addSubview(imgView)
         imgView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -23,12 +22,13 @@ class DateCell: UICollectionViewCell {
             make.width.equalToSuperview().dividedBy(2)
             make.height.equalTo(imgView.snp.width)
         }
-        imgView.backgroundColor = .red
+        
         addSubview(customLabel)
+        customLabel.font = UIFont.systemFont(ofSize: 14)
         customLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.greaterThanOrEqualTo(imgView.snp.bottom).offset(8)
-            make.bottom.equalToSuperview().inset(4)
+            make.top.equalTo(imgView.snp.bottom).offset(8)
+            make.bottom.greaterThanOrEqualToSuperview().inset(4)
         }
     }
     
@@ -36,8 +36,34 @@ class DateCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func bindSelected(_ selected: Bool) {
+        backgroundColor = selected ? UIColor(hex: "EBEBEB") : UIColor.clear
+    }
 
     func bindData(_ dayOfWeek: DayOfWeek) {
-        customLabel.text = "\(dayOfWeek.rawValue)"
+        customLabel.text = "\(dayOfWeek.minimumText)"
+        backgroundColor = UIColor(hex: "EBEBEB")
+    }
+}
+
+private extension DayOfWeek {
+    var minimumText: String {
+        switch self {
+        case .monday:
+            return "T2"
+        case .tuesday:
+            return "T3"
+        case .wenseday:
+            return "T4"
+        case .thursday:
+            return "T5"
+        case .friday:
+            return "T6"
+        case .saturday:
+            return "T7"
+        case .sunday:
+            return "CN"
+        }
     }
 }

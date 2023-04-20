@@ -21,6 +21,7 @@ class HistoryVC: UIViewController {
 
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     @IBOutlet private weak var reportTableView: UITableView!
+    @IBOutlet private weak var reportPerWeekView: UIView!
     
     var reports: [String] = []
     
@@ -47,7 +48,6 @@ class HistoryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
     }
     
     func setupUI() {
@@ -65,6 +65,8 @@ class HistoryVC: UIViewController {
         reportTableView.rowHeight = 60
         reportTableView.estimatedRowHeight = 60
         reportTableView.register(ReportCell.self)
+        
+        reportPerWeekView.backgroundColor = UIColor(hex: "EBEBEB")
     }
 }
 

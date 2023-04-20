@@ -1,4 +1,5 @@
 import Foundation
+import SwiftDate
 
 
 class UserDefaultService {
@@ -43,4 +44,7 @@ extension HasSaveToUserDefault {
         
     }
 }
+
+
+let VNRegion = Region(calendar: Calendars.gregorian, zone: Zones.asiaVientiane, locale: Locales.vietnameseVietnam)
 

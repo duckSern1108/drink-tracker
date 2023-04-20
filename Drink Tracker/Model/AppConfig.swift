@@ -10,4 +10,6 @@ struct AppConfig: HasSaveToUserDefault {
     var currentDrinkWater: Double = 0
     
     var drinkHistory: [DrinkDayResult] = []
+    
+    var todayDrink: [DrinkDayResult] = []
 }
