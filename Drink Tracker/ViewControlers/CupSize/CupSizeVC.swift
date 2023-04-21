@@ -23,9 +23,7 @@ class CupSizeVC: UIViewController {
         super.viewDidLoad()
         
         title = "Đổi cốc"
-        
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.navigationBar.topItem?.backButtonTitle = ""
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -78,11 +76,5 @@ extension CupSizeVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         0
-    }
-}
-
-extension CupSizeVC: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        true
     }
 }

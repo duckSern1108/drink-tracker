@@ -48,7 +48,6 @@ class HomeVC: UIViewController {
     }
     
     @IBAction func onDrinkWater(_ sender: Any) {
-        AppConfig.shared.currentDrinkWater += Setting.shared.cupSize
         let newDrinkRes = DrinkDayResult(amount: Setting.shared.cupSize, date: Date())
         AppConfig.shared.todayDrink.append(newDrinkRes)
         updateWater()

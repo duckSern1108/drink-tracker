@@ -26,6 +26,18 @@ class UserDefaultService {
         
         return try? jsonDecoder.decode(T.self, from: data)
     }
+    
+    func getAppData() {
+        AppConfig.shared = UserDefaultService.shared.getData(key: .appConfig) ?? AppConfig()
+        if let lastTimeTodayDrinkResult = AppConfig.shared.todayDrink.last?.date,
+           lastTimeTodayDrinkResult < Date()
+        {
+            AppConfig.shared.todayDrink = []
+            AppConfig.shared.saveToUserDefault()
+        }
+        UserInfo.shared = UserDefaultService.shared.getData(key: .userInfo) ?? UserInfo()
+        Setting.shared = UserDefaultService.shared.getData(key: .setting) ?? Setting()
+    }
 }
 
 protocol HasSaveToUserDefault: Codable {
