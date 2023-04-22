@@ -29,6 +29,8 @@
 		981B7B2429D6C81A0011D9EE /* SettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981B7B2229D6C81A0011D9EE /* SettingVC.xib */; };
 		981B7B2829D6C8490011D9EE /* OnboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B7B2629D6C8490011D9EE /* OnboardVC.swift */; };
 		981B7B2929D6C8490011D9EE /* OnboardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981B7B2729D6C8490011D9EE /* OnboardVC.xib */; };
+		986A0FB229F38B8500D1724B /* PickDonViVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A0FB029F38B8500D1724B /* PickDonViVC.swift */; };
+		986A0FB329F38B8500D1724B /* PickDonViVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 986A0FB129F38B8500D1724B /* PickDonViVC.xib */; };
 		987A13F329E7E2B4006845A7 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987A13F229E7E2B4006845A7 /* UserInfo.swift */; };
 		987A13F529E7E2C1006845A7 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987A13F429E7E2C1006845A7 /* AppConfig.swift */; };
 		987A13F729E7EAD1006845A7 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987A13F629E7EAD1006845A7 /* Drink.swift */; };
@@ -73,6 +75,8 @@
 		981B7B2629D6C8490011D9EE /* OnboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardVC.swift; sourceTree = "<group>"; };
 		981B7B2729D6C8490011D9EE /* OnboardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardVC.xib; sourceTree = "<group>"; };
 		986A0FAE29F1979700D1724B /* .gitignore.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = .gitignore.md; sourceTree = "<group>"; };
+		986A0FB029F38B8500D1724B /* PickDonViVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickDonViVC.swift; sourceTree = "<group>"; };
+		986A0FB129F38B8500D1724B /* PickDonViVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickDonViVC.xib; sourceTree = "<group>"; };
 		987A13F229E7E2B4006845A7 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		987A13F429E7E2C1006845A7 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		987A13F629E7EAD1006845A7 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 		981B7B1729D6C7D10011D9EE /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				986A0FAF29F38B5A00D1724B /* Donvi */,
 				98D87FC229D71E030076511F /* Reminder */,
 				981B7B2129D6C81A0011D9EE /* SettingVC.swift */,
 				981B7B2229D6C81A0011D9EE /* SettingVC.xib */,
@@ -214,6 +219,15 @@
 				981B7B2729D6C8490011D9EE /* OnboardVC.xib */,
 			);
 			path = Onboard;
+			sourceTree = "<group>";
+		};
+		986A0FAF29F38B5A00D1724B /* Donvi */ = {
+			isa = PBXGroup;
+			children = (
+				986A0FB029F38B8500D1724B /* PickDonViVC.swift */,
+				986A0FB129F38B8500D1724B /* PickDonViVC.xib */,
+			);
+			path = Donvi;
 			sourceTree = "<group>";
 		};
 		987A13F129E7E29C006845A7 /* Service */ = {
@@ -343,6 +357,7 @@
 				981B7B0F29D6C66A0011D9EE /* BaseView.xib in Resources */,
 				98D87FC629D71E140076511F /* SettingReminderVC.xib in Resources */,
 				981B7B2929D6C8490011D9EE /* OnboardVC.xib in Resources */,
+				986A0FB329F38B8500D1724B /* PickDonViVC.xib in Resources */,
 				981B7B1C29D6C7F80011D9EE /* HomeVC.xib in Resources */,
 				98D87FB929D6D5540076511F /* ReportCell.xib in Resources */,
 				981B7B2029D6C8080011D9EE /* HistoryVC.xib in Resources */,
@@ -410,6 +425,7 @@
 				981B7AE929D6C4F50011D9EE /* AppDelegate.swift in Sources */,
 				981B7B1B29D6C7F80011D9EE /* HomeVC.swift in Sources */,
 				981B7B0B29D6C61C0011D9EE /* UIView+ext.swift in Sources */,
+				986A0FB229F38B8500D1724B /* PickDonViVC.swift in Sources */,
 				981B7B0529D6C61C0011D9EE /* UICollectionView+ext.swift in Sources */,
 				981B7B2329D6C81A0011D9EE /* SettingVC.swift in Sources */,
 				981B7B2829D6C8490011D9EE /* OnboardVC.swift in Sources */,

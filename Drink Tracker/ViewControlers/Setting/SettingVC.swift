@@ -96,7 +96,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
                 .soundRemind:
             return ""
         case .donVi:
-            return "\(Setting.shared.waterDonVi), \(Setting.shared.waterDonVi)"
+            return "\(Setting.shared.weightDonVi), \(Setting.shared.waterDonVi)"
         case .targetDrink:
             return "\(Setting.shared.drinkTarget)"
         case .gender:

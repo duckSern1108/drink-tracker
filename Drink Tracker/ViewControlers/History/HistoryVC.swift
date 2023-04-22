@@ -18,12 +18,20 @@ enum DayOfWeek: Int, CaseIterable {
 }
 
 class HistoryVC: UIViewController {
-
+    
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     @IBOutlet private weak var reportTableView: UITableView!
     @IBOutlet private weak var reportPerWeekView: UIView!
     
-    var reports: [String] = []
+    struct Report: Codable {
+        var weaklyAmount: Double = 0
+        var monthlyAmount: Double = 0
+        var percentFinish: Double = 0
+        // ngay
+        var drinkFrequency: Int = 0
+    }
+    
+    var report: Report = .init()
     
     enum ReportSection: Int, CaseIterable {
         case weekAverage
@@ -47,14 +55,60 @@ class HistoryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        genReport()
         setupUI()
+    }
+    
+    func genReport() {
+        let drinkHistory = AppConfig.shared.drinkHistory
+        guard !drinkHistory.isEmpty else { return }
+        let sortedDate = drinkHistory.keys.sorted(by: >)
+        
+        var startMonthDate: Date = sortedDate.first!
+        var countMonth: Double = 1
+        
+        var startWeekDate: Date = sortedDate.first!
+        var countWeek: Double = 1
+        
+        let countDay = Double(drinkHistory.keys.count)
+        var countDayReachTarget = 0.0
+        
+        var totalDrink: Double = 0
+        
+        var drinkTimes: Int = 0
+        sortedDate.forEach { date in
+            let dateTotalAmount = drinkHistory[date]!.reduce(0, { $0 + $1.amount })
+            countDayReachTarget += dateTotalAmount < Setting.shared.drinkTarget ? 0 : 1
+            totalDrink += dateTotalAmount
+            print(drinkHistory[date]!.count)
+            drinkTimes += drinkHistory[date]!.count
+            
+            if date.month == startMonthDate.month && date.year == startMonthDate.year {
+            } else {
+                startMonthDate = date
+                countMonth += 1
+            }
+            
+            if date.compare(toDate: startWeekDate, granularity: .weekdayOrdinal) == .orderedSame {
+            } else {
+                startWeekDate = date
+                countWeek += 1
+            }
+        }
+        
+        report = Report(
+            weaklyAmount: totalDrink / countWeek,
+            monthlyAmount: totalDrink / countMonth,
+            percentFinish: countDayReachTarget / countDay * 100,
+            drinkFrequency: drinkTimes / Int(countDay)
+        )
     }
     
     func setupUI() {
         calendarCollectionView.dataSource = self
-        calendarCollectionView.delegate = self        
+        calendarCollectionView.delegate = self
         calendarCollectionView.isScrollEnabled = false
-
+        
         calendarCollectionView.register(DateCell.self)
         
         reportTableView.dataSource = self
@@ -103,11 +157,23 @@ extension HistoryVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         ReportSection.allCases.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(ReportCell.self)
         let data = ReportSection(rawValue: indexPath.row) ?? .weekAverage
-        cell.bind(title: data.title, value: "400ml")
+        let value: String = {
+            switch data {
+            case .weekAverage:
+                return "\(Int(report.weaklyAmount)) ml / tuần"
+            case .monthAverage:
+                return "\(Int(report.monthlyAmount)) ml / tháng"
+            case .percentFinish:
+                return "\(Int(report.percentFinish))%"
+            case .drinkFrequency:
+                return "\(report.drinkFrequency) lần / ngày"
+            }
+        }()
+        cell.bind(title: data.title, value: value)
         return cell
     }
     

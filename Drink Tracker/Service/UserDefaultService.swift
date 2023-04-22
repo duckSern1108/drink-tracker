@@ -28,15 +28,16 @@ class UserDefaultService {
     }
     
     func getAppData() {
+        UserInfo.shared = UserDefaultService.shared.getData(key: .userInfo) ?? UserInfo()
+        Setting.shared = UserDefaultService.shared.getData(key: .setting) ?? Setting()
         AppConfig.shared = UserDefaultService.shared.getData(key: .appConfig) ?? AppConfig()
         if let lastTimeTodayDrinkResult = AppConfig.shared.todayDrink.last?.date,
-           lastTimeTodayDrinkResult < Date()
+           !lastTimeTodayDrinkResult.compare(.isToday)
         {
+            AppConfig.shared.drinkHistory[lastTimeTodayDrinkResult] = AppConfig.shared.todayDrink
             AppConfig.shared.todayDrink = []
             AppConfig.shared.saveToUserDefault()
         }
-        UserInfo.shared = UserDefaultService.shared.getData(key: .userInfo) ?? UserInfo()
-        Setting.shared = UserDefaultService.shared.getData(key: .setting) ?? Setting()
     }
 }
 
@@ -52,8 +53,7 @@ extension HasSaveToUserDefault {
             try UserDefaultService.shared.setData(self, key: key)
         } catch let err {
             print(err.localizedDescription)
-        }
-        
+        }        
     }
 }
 

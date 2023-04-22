@@ -1,5 +1,6 @@
 import Foundation
 
+typealias DrinkHistory = [Date: [DrinkDayResult]]
 
 struct AppConfig: HasSaveToUserDefault {
     static var shared = AppConfig()
@@ -8,7 +9,7 @@ struct AppConfig: HasSaveToUserDefault {
     
     var isOnboard: Bool = false
     
-    var drinkHistory: [DrinkDayResult] = []
+    var drinkHistory: DrinkHistory = [:]
     
     var todayDrink: [DrinkDayResult] = []
     
