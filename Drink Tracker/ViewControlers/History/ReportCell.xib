@@ -51,6 +51,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="seperator" destination="tht-eS-sD2" id="0ZS-VH-EQK"/>
                 <outlet property="titleLabel" destination="rdy-j8-2cO" id="YlE-YN-JTn"/>
                 <outlet property="valueLabel" destination="3cS-U8-RKS" id="uwE-yJ-DAd"/>
             </connections>

@@ -16,12 +16,21 @@ class SettingReminderVC: UIViewController {
         "12:00",
         "13:00"
     ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Hẹn lịch nhắc uống nước"
+        navigationController?.navigationBar.topItem?.backButtonTitle = ""
         
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(SettingReminderCell.self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
     }
 }
 

@@ -62,6 +62,11 @@ class SettingVC: UIViewController {
         tableview.register(ReportCell.self)
         tableview.register(SectionHeaderSetting.self, forHeaderFooterViewReuseIdentifier: "header")
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
 }
 
 extension SettingVC: UITableViewDataSource, UITableViewDelegate {
@@ -77,7 +82,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? SectionHeaderSetting,
               let section = Section(rawValue: section)
         else { return nil }
-        headerView.label.text = section.text
+        headerView.label.text = section.text.uppercased()
         return headerView
     }
     
@@ -85,7 +90,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
         guard let section = Section(rawValue: indexPath.section) else { return UITableViewCell() }
         let item = section.commands[indexPath.row]
         let cell = tableView.dequeue(ReportCell.self)
-        cell.bind(title: item.rawValue, value: getDisplayTextForItem(item: item))
+        cell.bind(title: item.rawValue, value: getDisplayTextForItem(item: item), isHiddenSeperator: true)
         return cell
     }
         
@@ -111,7 +116,8 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let command = SettingCommand.allCases[indexPath.row]
+        guard let section = Section(rawValue: indexPath.section) else { return }
+        let command = section.commands[indexPath.row]
         switch command {
         case .calendarRemind:
             navigationController?.pushViewController(SettingReminderVC(), animated: true)

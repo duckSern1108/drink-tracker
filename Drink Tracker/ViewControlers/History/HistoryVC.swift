@@ -59,6 +59,11 @@ class HistoryVC: UIViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     func genReport() {
         let drinkHistory = AppConfig.shared.drinkHistory
         guard !drinkHistory.isEmpty else { return }
@@ -173,7 +178,7 @@ extension HistoryVC: UITableViewDataSource, UITableViewDelegate {
                 return "\(report.drinkFrequency) lần / ngày"
             }
         }()
-        cell.bind(title: data.title, value: value)
+        cell.bind(title: data.title, value: value, seperatorColor: UIColor(hex: "EBEBEB"))
         return cell
     }
     
