@@ -11,6 +11,9 @@ struct UserInfo: HasSaveToUserDefault {
     var gender: Gender = .male
     //cm
     var height: Double = 150
+    
+    var timeWakeUp: Date = Date()
+    var timeGoToSleep: Date = Date()
 }
 
 enum Gender: String, Codable {

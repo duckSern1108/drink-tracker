@@ -1,11 +1,5 @@
-//
-//  SettingVC.swift
-//  Drink Tracker
-//
-//  Created by Sern Duck on 31/03/2023.
-//
-
 import UIKit
+import SwiftDate
 
 class SettingVC: UIViewController {
     
@@ -93,7 +87,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
         cell.bind(title: item.rawValue, value: getDisplayTextForItem(item: item), isHiddenSeperator: true)
         return cell
     }
-        
+    
     
     func getDisplayTextForItem(item : SettingCommand) -> String {
         switch item {
@@ -109,9 +103,9 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
         case .weight:
             return "\(UserInfo.shared.weight) \(Setting.shared.weightDonVi)"
         case .timeWakeUp:
-            return "06:10"
+            return UserInfo.shared.timeWakeUp.convertTo(region: VNRegion).toFormat("HH:mm")
         case .timeGoToSleep:
-            return "22:00"
+            return UserInfo.shared.timeGoToSleep.convertTo(region: VNRegion).toFormat("HH:mm")
         }
     }
     
@@ -123,17 +117,62 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
             navigationController?.pushViewController(SettingReminderVC(), animated: true)
         case .soundRemind:
             break
-        case .gender:
-            break
-        case .timeGoToSleep:
-            break
-        case .timeWakeUp:
-            break
+            
         case .donVi:
-            break
+            let vc = BottomSheetVC.newVC(contentVC: PickDonViVC(), contentHeight: 400)
+            vc.modalPresentationStyle = .overFullScreen
+            MainTabBarVC.shared.present(vc, animated: true)
         case .targetDrink:
             break
+            
+        case .gender:
+            break
         case .weight:
+            let editWeightVC = EditWeightVC()
+            editWeightVC.onConfirm = { [weak self] weight in
+                UserInfo.shared.weight = weight
+                UserInfo.shared.saveToUserDefault()
+                
+                Setting.shared.drinkTarget = weight * 30
+                Setting.shared.saveToUserDefault()
+                self?.tableview.reloadData()
+            }
+            let vc = BottomSheetVC.newVC(contentVC: editWeightVC, contentHeight: 130)
+            vc.modalPresentationStyle = .overFullScreen
+            MainTabBarVC.shared.present(vc, animated: true)
+        case .timeWakeUp:
+            let vnTime = UserInfo.shared.timeWakeUp.convertTo(region: VNRegion)
+            let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute)
+            pickTimeVC.onConfirmChange = { [weak self] hour, minute in
+                guard let date = DateInRegion(components: {
+                    $0.hour = hour
+                    $0.minute = minute
+                }, region: VNRegion)?.date
+                else { return }
+                UserInfo.shared.timeWakeUp = date
+                UserInfo.shared.saveToUserDefault()
+                self?.tableview.reloadData()
+            }
+            let vc = BottomSheetVC.newVC(contentVC: pickTimeVC, contentHeight: 300)
+            vc.modalPresentationStyle = .overFullScreen
+            MainTabBarVC.shared.present(vc, animated: true)
+            break
+        case .timeGoToSleep:
+            let vnTime = UserInfo.shared.timeGoToSleep.convertTo(region: VNRegion)
+            let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute)
+            pickTimeVC.onConfirmChange = { [weak self] hour, minute in
+                guard let date = DateInRegion(components: {
+                    $0.hour = hour
+                    $0.minute = minute
+                }, region: VNRegion)?.date
+                else { return }
+                UserInfo.shared.timeGoToSleep = date
+                UserInfo.shared.saveToUserDefault()
+                self?.tableview.reloadData()
+            }
+            let vc = BottomSheetVC.newVC(contentVC: pickTimeVC, contentHeight: 300)
+            vc.modalPresentationStyle = .overFullScreen
+            MainTabBarVC.shared.present(vc, animated: true)
             break
         }
     }

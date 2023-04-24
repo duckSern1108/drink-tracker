@@ -34,6 +34,12 @@
 		987A13F329E7E2B4006845A7 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987A13F229E7E2B4006845A7 /* UserInfo.swift */; };
 		987A13F529E7E2C1006845A7 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987A13F429E7E2C1006845A7 /* AppConfig.swift */; };
 		987A13F729E7EAD1006845A7 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987A13F629E7EAD1006845A7 /* Drink.swift */; };
+		98890BF929F65B91006A8D43 /* BottomSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98890BF729F65B91006A8D43 /* BottomSheetVC.swift */; };
+		98890BFA29F65B91006A8D43 /* BottomSheetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98890BF829F65B91006A8D43 /* BottomSheetVC.xib */; };
+		98890BFE29F674AE006A8D43 /* EditWeightVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98890BFC29F674AE006A8D43 /* EditWeightVC.swift */; };
+		98890BFF29F674AE006A8D43 /* EditWeightVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98890BFD29F674AE006A8D43 /* EditWeightVC.xib */; };
+		98890C0329F67C16006A8D43 /* PickTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98890C0129F67C16006A8D43 /* PickTimeVC.swift */; };
+		98890C0429F67C16006A8D43 /* PickTimeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98890C0229F67C16006A8D43 /* PickTimeVC.xib */; };
 		98D87FB329D6C9860076511F /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D87FB229D6C9860076511F /* UserDefaultService.swift */; };
 		98D87FB529D6CC600076511F /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D87FB429D6CC600076511F /* DateCell.swift */; };
 		98D87FB829D6D5540076511F /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D87FB629D6D5540076511F /* ReportCell.swift */; };
@@ -74,12 +80,17 @@
 		981B7B2229D6C81A0011D9EE /* SettingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingVC.xib; sourceTree = "<group>"; };
 		981B7B2629D6C8490011D9EE /* OnboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardVC.swift; sourceTree = "<group>"; };
 		981B7B2729D6C8490011D9EE /* OnboardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardVC.xib; sourceTree = "<group>"; };
-		986A0FAE29F1979700D1724B /* .gitignore.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = .gitignore.md; sourceTree = "<group>"; };
 		986A0FB029F38B8500D1724B /* PickDonViVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickDonViVC.swift; sourceTree = "<group>"; };
 		986A0FB129F38B8500D1724B /* PickDonViVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickDonViVC.xib; sourceTree = "<group>"; };
 		987A13F229E7E2B4006845A7 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		987A13F429E7E2C1006845A7 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		987A13F629E7EAD1006845A7 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
+		98890BF729F65B91006A8D43 /* BottomSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetVC.swift; sourceTree = "<group>"; };
+		98890BF829F65B91006A8D43 /* BottomSheetVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetVC.xib; sourceTree = "<group>"; };
+		98890BFC29F674AE006A8D43 /* EditWeightVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWeightVC.swift; sourceTree = "<group>"; };
+		98890BFD29F674AE006A8D43 /* EditWeightVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditWeightVC.xib; sourceTree = "<group>"; };
+		98890C0129F67C16006A8D43 /* PickTimeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickTimeVC.swift; sourceTree = "<group>"; };
+		98890C0229F67C16006A8D43 /* PickTimeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickTimeVC.xib; sourceTree = "<group>"; };
 		98D87FB229D6C9860076511F /* UserDefaultService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
 		98D87FB429D6CC600076511F /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		98D87FB629D6D5540076511F /* ReportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
@@ -110,7 +121,6 @@
 		981B7ADC29D6C4F50011D9EE = {
 			isa = PBXGroup;
 			children = (
-				986A0FAE29F1979700D1724B /* .gitignore.md */,
 				981B7AE729D6C4F50011D9EE /* Drink Tracker */,
 				981B7AE629D6C4F50011D9EE /* Products */,
 				D2D480A8551C4C01F424C349 /* Pods */,
@@ -174,6 +184,7 @@
 		981B7B0C29D6C66A0011D9EE /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				98890BF629F65B5F006A8D43 /* BottomSheet */,
 				981B7B0D29D6C66A0011D9EE /* BaseView.xib */,
 				981B7B0E29D6C66A0011D9EE /* BaseView.swift */,
 			);
@@ -192,6 +203,8 @@
 		981B7B1729D6C7D10011D9EE /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				98890C0029F67BF6006A8D43 /* Time */,
+				98890BFB29F6748D006A8D43 /* Weight */,
 				986A0FAF29F38B5A00D1724B /* Donvi */,
 				98D87FC229D71E030076511F /* Reminder */,
 				981B7B2129D6C81A0011D9EE /* SettingVC.swift */,
@@ -236,6 +249,33 @@
 				98D87FB229D6C9860076511F /* UserDefaultService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		98890BF629F65B5F006A8D43 /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				98890BF729F65B91006A8D43 /* BottomSheetVC.swift */,
+				98890BF829F65B91006A8D43 /* BottomSheetVC.xib */,
+			);
+			path = BottomSheet;
+			sourceTree = "<group>";
+		};
+		98890BFB29F6748D006A8D43 /* Weight */ = {
+			isa = PBXGroup;
+			children = (
+				98890BFC29F674AE006A8D43 /* EditWeightVC.swift */,
+				98890BFD29F674AE006A8D43 /* EditWeightVC.xib */,
+			);
+			path = Weight;
+			sourceTree = "<group>";
+		};
+		98890C0029F67BF6006A8D43 /* Time */ = {
+			isa = PBXGroup;
+			children = (
+				98890C0129F67C16006A8D43 /* PickTimeVC.swift */,
+				98890C0229F67C16006A8D43 /* PickTimeVC.xib */,
+			);
+			path = Time;
 			sourceTree = "<group>";
 		};
 		98D87FBA29D719870076511F /* Model */ = {
@@ -355,11 +395,14 @@
 			files = (
 				98D87FCA29D723B60076511F /* CupSizeVC.xib in Resources */,
 				981B7B0F29D6C66A0011D9EE /* BaseView.xib in Resources */,
+				98890C0429F67C16006A8D43 /* PickTimeVC.xib in Resources */,
 				98D87FC629D71E140076511F /* SettingReminderVC.xib in Resources */,
 				981B7B2929D6C8490011D9EE /* OnboardVC.xib in Resources */,
 				986A0FB329F38B8500D1724B /* PickDonViVC.xib in Resources */,
 				981B7B1C29D6C7F80011D9EE /* HomeVC.xib in Resources */,
+				98890BFA29F65B91006A8D43 /* BottomSheetVC.xib in Resources */,
 				98D87FB929D6D5540076511F /* ReportCell.xib in Resources */,
+				98890BFF29F674AE006A8D43 /* EditWeightVC.xib in Resources */,
 				981B7B2029D6C8080011D9EE /* HistoryVC.xib in Resources */,
 				981B7AF529D6C4F70011D9EE /* LaunchScreen.storyboard in Resources */,
 				981B7AF229D6C4F70011D9EE /* Assets.xcassets in Resources */,
@@ -417,11 +460,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98890BFE29F674AE006A8D43 /* EditWeightVC.swift in Sources */,
 				981B7B0929D6C61C0011D9EE /* CGFLoat+Ext.swift in Sources */,
 				987A13F529E7E2C1006845A7 /* AppConfig.swift in Sources */,
 				981B7B0829D6C61C0011D9EE /* UIColor+Ext.swift in Sources */,
 				98D87FC029D71A640076511F /* UpdateUserInfoVCViewController.swift in Sources */,
 				987A13F329E7E2B4006845A7 /* UserInfo.swift in Sources */,
+				98890C0329F67C16006A8D43 /* PickTimeVC.swift in Sources */,
 				981B7AE929D6C4F50011D9EE /* AppDelegate.swift in Sources */,
 				981B7B1B29D6C7F80011D9EE /* HomeVC.swift in Sources */,
 				981B7B0B29D6C61C0011D9EE /* UIView+ext.swift in Sources */,
@@ -441,6 +486,7 @@
 				98D87FB329D6C9860076511F /* UserDefaultService.swift in Sources */,
 				98D87FB829D6D5540076511F /* ReportCell.swift in Sources */,
 				98D87FC929D723B60076511F /* CupSizeVC.swift in Sources */,
+				98890BF929F65B91006A8D43 /* BottomSheetVC.swift in Sources */,
 				981B7B1029D6C66A0011D9EE /* BaseView.swift in Sources */,
 				981B7B0A29D6C61C0011D9EE /* UIViewController+Ext.swift in Sources */,
 			);
