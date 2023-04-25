@@ -41,7 +41,7 @@ class SettingVC: UIViewController {
         case gender = "Giới tính"
         case weight = "Cân nặng"
         case timeWakeUp = "Giờ thức dậy"
-        case timeGoToSleep = " Giờ đi ngủ"
+        case timeGoToSleep = "Giờ đi ngủ"
     }
     
     override func viewDidLoad() {
@@ -52,7 +52,7 @@ class SettingVC: UIViewController {
         tableview.separatorStyle = .none
         tableview.rowHeight = 30
         tableview.estimatedRowHeight = 30
-        tableview.sectionHeaderHeight = 40
+        tableview.sectionHeaderHeight = 30
         tableview.register(ReportCell.self)
         tableview.register(SectionHeaderSetting.self, forHeaderFooterViewReuseIdentifier: "header")
     }
@@ -97,7 +97,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
         case .donVi:
             return "\(Setting.shared.weightDonVi), \(Setting.shared.waterDonVi)"
         case .targetDrink:
-            return "\(Setting.shared.drinkTarget)"
+            return "\(Int(Setting.shared.drinkTarget))"
         case .gender:
             return "\(UserInfo.shared.gender.rawValue)"
         case .weight:
@@ -114,7 +114,9 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
         let command = section.commands[indexPath.row]
         switch command {
         case .calendarRemind:
-            navigationController?.pushViewController(SettingReminderVC(), animated: true)
+            let vc = SettingReminderVC()
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
         case .soundRemind:
             break
             
@@ -142,7 +144,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
             MainTabBarVC.shared.present(vc, animated: true)
         case .timeWakeUp:
             let vnTime = UserInfo.shared.timeWakeUp.convertTo(region: VNRegion)
-            let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute)
+            let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute, title: "Chọn thời gian thức dậy")
             pickTimeVC.onConfirmChange = { [weak self] hour, minute in
                 guard let date = DateInRegion(components: {
                     $0.hour = hour
@@ -153,13 +155,13 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
                 UserInfo.shared.saveToUserDefault()
                 self?.tableview.reloadData()
             }
-            let vc = BottomSheetVC.newVC(contentVC: pickTimeVC, contentHeight: 300)
+            let vc = BottomSheetVC.newVC(contentVC: pickTimeVC, contentHeight: 320)
             vc.modalPresentationStyle = .overFullScreen
             MainTabBarVC.shared.present(vc, animated: true)
             break
         case .timeGoToSleep:
             let vnTime = UserInfo.shared.timeGoToSleep.convertTo(region: VNRegion)
-            let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute)
+            let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute, title: "Chọn thời gian đi ngủ")
             pickTimeVC.onConfirmChange = { [weak self] hour, minute in
                 guard let date = DateInRegion(components: {
                     $0.hour = hour
@@ -170,7 +172,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
                 UserInfo.shared.saveToUserDefault()
                 self?.tableview.reloadData()
             }
-            let vc = BottomSheetVC.newVC(contentVC: pickTimeVC, contentHeight: 300)
+            let vc = BottomSheetVC.newVC(contentVC: pickTimeVC, contentHeight: 320)
             vc.modalPresentationStyle = .overFullScreen
             MainTabBarVC.shared.present(vc, animated: true)
             break
@@ -180,6 +182,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
 
 class SectionHeaderSetting: UITableViewHeaderFooterView {
     var label: UILabel = UILabel()
+    var seperator: UIView = UIView()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -192,8 +195,19 @@ class SectionHeaderSetting: UITableViewHeaderFooterView {
     
     func configure() {
         contentView.addSubview(label)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        contentView.addSubview(seperator)
+        seperator.backgroundColor = UIColor(hex: "EBEBEB")
+        
         label.snp.makeConstraints { make in
-            make.leading.trailing.top.bottom.equalToSuperview()
+            make.leading.trailing.top.equalToSuperview()
+        }
+        
+        seperator.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.width.equalTo(label.snp.width)
+            make.top.equalTo(label.snp.bottom).offset(2)
+            make.bottom.equalToSuperview()
         }
     }
 }

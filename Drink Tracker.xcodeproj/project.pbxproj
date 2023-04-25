@@ -29,6 +29,8 @@
 		981B7B2429D6C81A0011D9EE /* SettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981B7B2229D6C81A0011D9EE /* SettingVC.xib */; };
 		981B7B2829D6C8490011D9EE /* OnboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B7B2629D6C8490011D9EE /* OnboardVC.swift */; };
 		981B7B2929D6C8490011D9EE /* OnboardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981B7B2729D6C8490011D9EE /* OnboardVC.xib */; };
+		9858617429F68F8D00B778B5 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9858617329F68F8D00B778B5 /* DateHelper.swift */; };
+		9858617629F68F9B00B778B5 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9858617529F68F9B00B778B5 /* StringHelper.swift */; };
 		986A0FB229F38B8500D1724B /* PickDonViVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A0FB029F38B8500D1724B /* PickDonViVC.swift */; };
 		986A0FB329F38B8500D1724B /* PickDonViVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 986A0FB129F38B8500D1724B /* PickDonViVC.xib */; };
 		987A13F329E7E2B4006845A7 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987A13F229E7E2B4006845A7 /* UserInfo.swift */; };
@@ -80,6 +82,9 @@
 		981B7B2229D6C81A0011D9EE /* SettingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingVC.xib; sourceTree = "<group>"; };
 		981B7B2629D6C8490011D9EE /* OnboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardVC.swift; sourceTree = "<group>"; };
 		981B7B2729D6C8490011D9EE /* OnboardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardVC.xib; sourceTree = "<group>"; };
+		9858617329F68F8D00B778B5 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		9858617529F68F9B00B778B5 /* StringHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
+		9858617729F7730E00B778B5 /* Drink Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Drink Tracker.entitlements"; sourceTree = "<group>"; };
 		986A0FB029F38B8500D1724B /* PickDonViVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickDonViVC.swift; sourceTree = "<group>"; };
 		986A0FB129F38B8500D1724B /* PickDonViVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickDonViVC.xib; sourceTree = "<group>"; };
 		987A13F229E7E2B4006845A7 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -139,6 +144,8 @@
 		981B7AE729D6C4F50011D9EE /* Drink Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				9858617729F7730E00B778B5 /* Drink Tracker.entitlements */,
+				9858617229F68F6D00B778B5 /* Helper */,
 				987A13F129E7E29C006845A7 /* Service */,
 				98D87FBA29D719870076511F /* Model */,
 				981B7B0C29D6C66A0011D9EE /* BaseView */,
@@ -232,6 +239,15 @@
 				981B7B2729D6C8490011D9EE /* OnboardVC.xib */,
 			);
 			path = Onboard;
+			sourceTree = "<group>";
+		};
+		9858617229F68F6D00B778B5 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				9858617329F68F8D00B778B5 /* DateHelper.swift */,
+				9858617529F68F9B00B778B5 /* StringHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		986A0FAF29F38B5A00D1724B /* Donvi */ = {
@@ -469,12 +485,14 @@
 				98890C0329F67C16006A8D43 /* PickTimeVC.swift in Sources */,
 				981B7AE929D6C4F50011D9EE /* AppDelegate.swift in Sources */,
 				981B7B1B29D6C7F80011D9EE /* HomeVC.swift in Sources */,
+				9858617629F68F9B00B778B5 /* StringHelper.swift in Sources */,
 				981B7B0B29D6C61C0011D9EE /* UIView+ext.swift in Sources */,
 				986A0FB229F38B8500D1724B /* PickDonViVC.swift in Sources */,
 				981B7B0529D6C61C0011D9EE /* UICollectionView+ext.swift in Sources */,
 				981B7B2329D6C81A0011D9EE /* SettingVC.swift in Sources */,
 				981B7B2829D6C8490011D9EE /* OnboardVC.swift in Sources */,
 				981B7B1F29D6C8080011D9EE /* HistoryVC.swift in Sources */,
+				9858617429F68F8D00B778B5 /* DateHelper.swift in Sources */,
 				98D87FBC29D719940076511F /* Setting.swift in Sources */,
 				981B7AEB29D6C4F50011D9EE /* SceneDelegate.swift in Sources */,
 				981B7B1529D6C7B70011D9EE /* MainTabBarVC.swift in Sources */,
@@ -626,6 +644,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Drink Tracker/Drink Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 93F82P64D8;
@@ -655,6 +674,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Drink Tracker/Drink Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 93F82P64D8;

@@ -11,6 +11,7 @@ struct Setting: HasSaveToUserDefault {
     var goToSleepTime: Date = Date()
     var waterDonVi: WaterDonVi = .ml
     var weightDonVi: WeightDonVi = .kg
+    var remindHour: Set<Int> = .init()
     
     var cupSize: Double = 250
 }

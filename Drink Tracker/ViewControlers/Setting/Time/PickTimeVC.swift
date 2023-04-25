@@ -9,25 +9,30 @@ import UIKit
 
 class PickTimeVC: UIViewController {
     
+    @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var hourPicker: UIPickerView!
     @IBOutlet private weak var minutePicker: UIPickerView!
     
-    static func newVC(selectedHour: Int, selectedMinute: Int) -> PickTimeVC {
+    static func newVC(selectedHour: Int, selectedMinute: Int, title: String) -> PickTimeVC {
         let vc = PickTimeVC()
         vc.selectedHour = selectedHour
         vc.selectedMinute = selectedMinute
+        vc.headerTitle = title
         return vc
     }
-    
-    let hourOptions: [Int] = Array(stride(from: 1, to: 24, by: 1))
-    let minuteOptions: [Int] = Array(stride(from: 0, to: 60, by: 5))
+        
     var selectedHour: Int = -1
     var selectedMinute: Int = -1
-    
+    var headerTitle: String = ""
     var onConfirmChange: ((_ time: Int, _ minute: Int) -> Void)?
+    
+    private let hourOptions: [Int] = Array(stride(from: 1, to: 24, by: 1))
+    private let minuteOptions: [Int] = Array(stride(from: 0, to: 60, by: 5))
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerLabel.text = headerTitle
+        
         hourPicker.dataSource = self
         hourPicker.delegate = self
         if let selectedHourIndex = hourOptions.firstIndex(where: { $0 == selectedHour }) {
@@ -40,6 +45,7 @@ class PickTimeVC: UIViewController {
             minutePicker.selectRow(selectedMinuteIndex, inComponent: 0, animated: false)
         }
     }
+    
     @IBAction private func onConfirm(_ sender: Any) {
         dismiss(animated: true)
         onConfirmChange?(

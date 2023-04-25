@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PickTimeVC" customModule="Drink_Tracker" customModuleProvider="target">
             <connections>
+                <outlet property="headerLabel" destination="4FH-V6-arq" id="NvD-Ow-4kE"/>
                 <outlet property="hourPicker" destination="Y9e-1V-y2Z" id="uMc-Q1-jju"/>
                 <outlet property="minutePicker" destination="26E-K8-Fax" id="6Q0-dA-zrb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -21,20 +22,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="351"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FH-V6-arq">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FH-V6-arq">
                     <rect key="frame" x="16" y="15.999999999999998" width="343" height="20.333333333333329"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HMS-Tv-8T6">
-                    <rect key="frame" x="16" y="75" width="343" height="200"/>
+                    <rect key="frame" x="16" y="89" width="343" height="200"/>
                     <subviews>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y9e-1V-y2Z">
-                            <rect key="frame" x="0.0" y="0.0" width="172" height="200"/>
+                            <rect key="frame" x="0.0" y="0.0" width="171.66666666666666" height="200"/>
                         </pickerView>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="26E-K8-Fax">
-                            <rect key="frame" x="172" y="0.0" width="171" height="200"/>
+                            <rect key="frame" x="171.66666666666663" y="0.0" width="171.33333333333337" height="200"/>
                         </pickerView>
                     </subviews>
                     <constraints>
@@ -42,7 +43,7 @@
                     </constraints>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJX-lO-N1y">
-                    <rect key="frame" x="16" y="291" width="343" height="40"/>
+                    <rect key="frame" x="16" y="305" width="343" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="9Qy-wA-Nh7"/>
                     </constraints>
@@ -64,7 +65,7 @@
                 <constraint firstItem="4FH-V6-arq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="afg-ac-LsD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KJX-lO-N1y" secondAttribute="trailing" constant="16" id="c2V-nd-dIc"/>
                 <constraint firstItem="KJX-lO-N1y" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="emY-QA-nIJ"/>
-                <constraint firstItem="HMS-Tv-8T6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="iWH-yE-9fD"/>
+                <constraint firstItem="HMS-Tv-8T6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="iWH-yE-9fD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="KJX-lO-N1y" secondAttribute="bottom" priority="999" constant="16" id="uGo-IS-gV4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
