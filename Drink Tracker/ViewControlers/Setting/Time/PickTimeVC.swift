@@ -26,7 +26,7 @@ class PickTimeVC: UIViewController {
     var headerTitle: String = ""
     var onConfirmChange: ((_ time: Int, _ minute: Int) -> Void)?
     
-    private let hourOptions: [Int] = Array(stride(from: 1, to: 24, by: 1))
+    private let hourOptions: [Int] = Array(stride(from: 1, to: 25, by: 1))
     private let minuteOptions: [Int] = Array(stride(from: 0, to: 60, by: 5))
     
     override func viewDidLoad() {

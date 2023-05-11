@@ -7,8 +7,6 @@ class UpdateUserInfoVCViewController: UIViewController {
     
     @IBOutlet private weak var waterLabel: UILabel!
     @IBOutlet private weak var heightTextField: UITextField!
-//    @IBOutlet private weak var wakeUpTimeLabel: UILabel!
-//    @IBOutlet private weak var sleepTimeLabel: UILabel!
     @IBOutlet private weak var weightTextField: UITextField!
     @IBOutlet weak var progresView: UIProgressView!
     @IBOutlet weak var loadingText: UILabel!
@@ -22,17 +20,45 @@ class UpdateUserInfoVCViewController: UIViewController {
     @IBOutlet weak var labelMale: UILabel!
     @IBOutlet weak var resultlb2: UILabel!
     @IBOutlet weak var resultlb1: UILabel!
-    
+    @IBOutlet weak var sleepTimeLabel: UITextField!
+    @IBOutlet weak var wakeUpTimeLabel: UITextField!
     @IBOutlet weak var bottleImage: UIImageView!
+    
+    @IBOutlet weak var updateButton: UIButton!
     let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
+        selectSex()
+        bindRx()
+        setupView()
+    }
+    
+    func setupView() {
         resultView.isHidden = true
         progresView.progress = 0
         calculateView.isHidden = true
         heightTextField.delegate = self
         weightTextField.delegate = self
-        self.selectSex()
+        wakeUpTimeLabel.delegate = self
+        sleepTimeLabel.delegate = self
+        wakeUpTimeLabel.text = "07:00"
+        sleepTimeLabel.text = "22:00"
+        updateButton.backgroundColor = isActiveButton() ? .appColor : .lightGray
+        updateButton.isUserInteractionEnabled = isActiveButton()
+        if let dateWake = DateInRegion(components: {
+            $0.hour = 7
+            $0.minute = 0
+        }, region: VNRegion)?.date,
+           let dateSleep = DateInRegion(components: {
+               $0.hour = 22
+               $0.minute = 0
+           }, region: VNRegion)?.date {
+            UserInfo.shared.timeWakeUp = dateWake
+            UserInfo.shared.timeWakeUp = dateSleep
+        }
+    }
+    
+    func bindRx(){
         viewMale.rx.tapGesture().when(.recognized).subscribe { [weak self] _ in
             guard let self = self else { return }
             self.selectSex(isMale: true)
@@ -44,23 +70,19 @@ class UpdateUserInfoVCViewController: UIViewController {
             self.selectSex(isMale: false)
         }
         .disposed(by: disposeBag)
-        
-    }
-    
-    func bindRx(){
         heightTextField.rx.tapGesture().when(.recognized).subscribe { [weak self] _ in
             guard let self = self else { return }
-            let editWeightVC = PickTimeVC()
-//            editWeightVC.onConfirm = { [weak self] weight in
-//                guard let self = self else { return }
-//                self.heightTextField.text = String(weight)
-//                UserInfo.shared.height = weight
-//                UserInfo.shared.saveToUserDefault()
-//
-//                Setting.shared.drinkTarget = weight * 30
-//                Setting.shared.saveToUserDefault()
-//            }
-            let vc = BottomSheetVC.newVC(contentVC: editWeightVC, contentHeight: 400)
+            let editWeightVC = EditWeightVC.newVc(isHeight: true)
+            editWeightVC.onConfirm = { [weak self] weight in
+                guard let self = self else { return }
+                self.heightTextField.text = String(weight)
+                UserInfo.shared.height = weight
+                UserInfo.shared.saveToUserDefault()
+                Setting.shared.saveToUserDefault()
+                updateButton.backgroundColor = isActiveButton() ? .appColor : .lightGray
+                updateButton.isUserInteractionEnabled = isActiveButton()
+            }
+            let vc = BottomSheetVC.newVC(contentVC: editWeightVC, contentHeight: 130)
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true)
         }
@@ -77,69 +99,87 @@ class UpdateUserInfoVCViewController: UIViewController {
                 
                 Setting.shared.drinkTarget = weight * 30
                 Setting.shared.saveToUserDefault()
+                updateButton.backgroundColor = isActiveButton() ? .appColor : .lightGray
+                updateButton.isUserInteractionEnabled = isActiveButton()
             }
             let vc = BottomSheetVC.newVC(contentVC: editWeightVC, contentHeight: 130)
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true)
         }
         .disposed(by: disposeBag)
-    // MARK: - TODO: sửa lại trên xib trước
-//        wakeUpTimeLabel.rx.tapGesture().when(.recognized)
-//            .subscribe(onNext: { [weak self] _ in
-//                guard let self = self else { return }
-//                let vnTime = UserInfo.shared.timeWakeUp.convertTo(region: VNRegion)
-//                let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute, title: "Chọn thời gian thức dậy")
-//                pickTimeVC.onConfirmChange = { [weak self] hour, minute in
-//                    guard let date = DateInRegion(components: {
-//                        $0.hour = hour
-//                        $0.minute = minute
-//                    }, region: VNRegion)?.date,
-//                          let self = self
-//                    else { return }
-//                    UserInfo.shared.timeWakeUp = date
-//                    UserInfo.shared.saveToUserDefault()
-//                    self.wakeUpTimeLabel.textColor = UIColor.black
-//                    self.wakeUpTimeLabel.text = UserInfo.shared.timeWakeUp.convertTo(region: VNRegion).toFormat("HH:mm")
-//                }
-//                let vc = BottomSheetVC.newVC(contentVC: pickTimeVC, contentHeight: 320)
-//                vc.modalPresentationStyle = .overFullScreen
-//                self.present(vc, animated: true)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        sleepTimeLabel.rx.tapGesture().when(.recognized)
-//            .subscribe(onNext: { [weak self] _ in
-//                guard let self = self else { return }
-//                let vnTime = UserInfo.shared.timeGoToSleep.convertTo(region: VNRegion)
-//                let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute, title: "Chọn thời gian đi ngủ")
-//                pickTimeVC.onConfirmChange = { [weak self] hour, minute in
-//                    guard let date = DateInRegion(components: {
-//                        $0.hour = hour
-//                        $0.minute = minute
-//                    }, region: VNRegion)?.date,
-//                          let self = self
-//                    else { return }
-//                    UserInfo.shared.timeGoToSleep = date
-//                    UserInfo.shared.saveToUserDefault()
-//                    self.sleepTimeLabel.textColor = UIColor.black
-//                    self.sleepTimeLabel.text = UserInfo.shared.timeGoToSleep.convertTo(region: VNRegion).toFormat("HH:mm")
-//                }
-//                let vc = BottomSheetVC.newVC(contentVC: pickTimeVC, contentHeight: 320)
-//                vc.modalPresentationStyle = .overFullScreen
-//                self.present(vc, animated: true)
-//            })
-//            .disposed(by: disposeBag)
+        wakeUpTimeLabel.rx.tapGesture().when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                let vnTime = UserInfo.shared.timeWakeUp.convertTo(region: VNRegion)
+                let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute, title: "Chọn thời gian thức dậy")
+                pickTimeVC.onConfirmChange = { [weak self] hour, minute in
+                    guard let date = DateInRegion(components: {
+                        $0.hour = hour
+                        $0.minute = minute
+                    }, region: VNRegion)?.date,
+                          let self = self
+                    else { return }
+                    UserInfo.shared.timeWakeUp = date
+                    UserInfo.shared.saveToUserDefault()
+                    self.wakeUpTimeLabel.textColor = UIColor.black
+                    self.wakeUpTimeLabel.text = UserInfo.shared.timeWakeUp.convertTo(region: VNRegion).toFormat("HH:mm")
+                }
+                let vc = BottomSheetVC.newVC(contentVC: pickTimeVC, contentHeight: 320)
+                vc.modalPresentationStyle = .overFullScreen
+                self.present(vc, animated: true)
+            })
+            .disposed(by: disposeBag)
+
+        sleepTimeLabel.rx.tapGesture().when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                let vnTime = UserInfo.shared.timeGoToSleep.convertTo(region: VNRegion)
+                let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute, title: "Chọn thời gian đi ngủ")
+                pickTimeVC.onConfirmChange = { [weak self] hour, minute in
+                    guard let date = DateInRegion(components: {
+                        $0.hour = hour
+                        $0.minute = minute
+                    }, region: VNRegion)?.date,
+                          let self = self
+                    else { return }
+                    UserInfo.shared.timeGoToSleep = date
+                    UserInfo.shared.saveToUserDefault()
+                    self.sleepTimeLabel.textColor = UIColor.black
+                    self.sleepTimeLabel.text = UserInfo.shared.timeGoToSleep.convertTo(region: VNRegion).toFormat("HH:mm")
+                }
+                let vc = BottomSheetVC.newVC(contentVC: pickTimeVC, contentHeight: 320)
+                vc.modalPresentationStyle = .overFullScreen
+                self.present(vc, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
+    @IBAction func skipAction(_ sender: UIButton) {
+        if weightTextField.text!.isEmpty {
+            UserInfo.shared.weight = 60
+        }
+        if heightTextField.text!.isEmpty {
+            UserInfo.shared.height = 160
+        }
+        UserInfo.shared.saveToUserDefault()
+        Setting.shared.drinkTarget = UserInfo.shared.weight * 30
+        Setting.shared.saveToUserDefault()
+     
+        AppConfig.shared.isOnboard = true
+        AppConfig.shared.saveToUserDefault()
+        AppCoordinator.shared.goToMainVC()
+    }
     @IBAction func onUpdateBtnPress(_ sender: Any) {
         guard let heightStr = heightTextField.text,
               let height = Double(heightStr),
               let weightStr = weightTextField.text,
               let weight = Double(weightStr)
         else { return }
+        updateWaterNeedAmount()
         UserInfo.shared.weight = weight
         UserInfo.shared.height = height
         UserInfo.shared.saveToUserDefault()
+        
     }
     
     func selectSex(isMale: Bool = true) {
@@ -151,18 +191,15 @@ class UpdateUserInfoVCViewController: UIViewController {
         self.viewFemale.alpha = isMale ? 0.6 : 1
     }
     
-    @IBAction func onHeightChange(_ sender: Any) {
-        updateWaterNeedAmount()
-    }
-    
-    @IBAction func onWeightChange(_ sender: Any) {
-        updateWaterNeedAmount()
+    func isActiveButton() -> Bool {
+        return !heightTextField.text!.isEmpty && !weightTextField.text!.isEmpty
     }
     
     private func updateWaterNeedAmount() {
-//        guard let weightStr = weightTextField.text,
-//              let weight = Int(weightStr)
-//        else { return }
+        guard let weightStr = weightTextField.text,
+              let weightDouble = Double(weightStr)
+        else { return }
+        let weight = Int(weightDouble)
         bottleImage.isHidden = true
         progresView.progressTintColor = .systemBlue
         loadingText.textColor = .darkGray
@@ -192,11 +229,8 @@ class UpdateUserInfoVCViewController: UIViewController {
                 self.resultView.isHidden = false
             }
         })
-        
-    
-//        let amountWaterNeed = weight * 30
-//        waterLabel.text = "\(amountWaterNeed) ml"
-        
+        let amountWaterNeed = weight * 30
+        waterLabel.text = "\(amountWaterNeed) ml"
     }
 }
 extension UpdateUserInfoVCViewController: UITextFieldDelegate {

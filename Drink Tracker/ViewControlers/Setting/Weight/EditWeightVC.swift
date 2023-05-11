@@ -9,13 +9,22 @@ import UIKit
 
 class EditWeightVC: UIViewController {
 
+    var isHeight: Bool = false
     @IBOutlet weak var textField: UITextField!
     
+    @IBOutlet weak var label: UILabel!
     var onConfirm: ((Double) -> Void)?
+    
+    static func newVc(isHeight: Bool = true) -> EditWeightVC {
+        let vc = EditWeightVC()
+        vc.isHeight = isHeight
+        return vc
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textField.text = "\(UserInfo.shared.weight)"
+        textField.text = "\(isHeight ? UserInfo.shared.height : UserInfo.shared.weight)"
+        label.text = isHeight ? "Chiều cao (cm):" : "Cân nặng (kg):"
         textField.keyboardType = .numberPad
     }
     
