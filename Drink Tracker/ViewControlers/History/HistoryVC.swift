@@ -178,7 +178,7 @@ extension HistoryVC: UITableViewDataSource, UITableViewDelegate {
                 return "\(report.drinkFrequency) lần / ngày"
             }
         }()
-        cell.bind(title: data.title, value: value, seperatorColor: UIColor(hex: "EBEBEB"))
+        cell.bind(title: data.title, value: value, seperatorColor: UIColor(hex: "EBEBEB"), isShowPoint: true, index: indexPath.row)
         return cell
     }
     

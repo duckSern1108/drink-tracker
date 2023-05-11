@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,8 +18,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2G-CK-fIu">
+                        <rect key="frame" x="8" y="19" width="6" height="6"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="6" id="6Fy-7Q-KtN"/>
+                            <constraint firstAttribute="height" constant="6" id="oZS-EQ-dy3"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdy-j8-2cO">
-                        <rect key="frame" x="8" y="11.999999999999998" width="39.666666666666664" height="20.333333333333329"/>
+                        <rect key="frame" x="19.999999999999996" y="11.999999999999998" width="39.666666666666657" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -42,15 +55,19 @@
                     <constraint firstItem="3cS-U8-RKS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rdy-j8-2cO" secondAttribute="trailing" constant="16" id="0x4-bJ-VE8"/>
                     <constraint firstItem="3cS-U8-RKS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="D9K-fO-MJ3"/>
                     <constraint firstItem="rdy-j8-2cO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="F3N-TX-0pd"/>
+                    <constraint firstItem="d2G-CK-fIu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="UFz-Oi-TMe"/>
+                    <constraint firstItem="d2G-CK-fIu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UqM-P5-1I8"/>
                     <constraint firstItem="tht-eS-sD2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="dAO-dl-cWe"/>
                     <constraint firstAttribute="trailing" secondItem="3cS-U8-RKS" secondAttribute="trailing" constant="8" id="f3Y-mE-8cE"/>
                     <constraint firstItem="tht-eS-sD2" firstAttribute="top" secondItem="rdy-j8-2cO" secondAttribute="bottom" constant="4" id="n6d-iQ-I6O"/>
-                    <constraint firstItem="rdy-j8-2cO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="rc3-Tn-YVG"/>
+                    <constraint firstItem="rdy-j8-2cO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="rc3-Tn-YVG"/>
                     <constraint firstAttribute="trailing" secondItem="tht-eS-sD2" secondAttribute="trailing" constant="8" id="xwu-kf-Zox"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="leadingTitle" destination="rc3-Tn-YVG" id="Pth-JN-llg"/>
+                <outlet property="pointView" destination="d2G-CK-fIu" id="6I0-AK-0th"/>
                 <outlet property="seperator" destination="tht-eS-sD2" id="0ZS-VH-EQK"/>
                 <outlet property="titleLabel" destination="rdy-j8-2cO" id="YlE-YN-JTn"/>
                 <outlet property="valueLabel" destination="3cS-U8-RKS" id="uwE-yJ-DAd"/>
@@ -59,6 +76,9 @@
         </tableViewCell>
     </objects>
     <resources>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

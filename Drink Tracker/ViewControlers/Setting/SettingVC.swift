@@ -24,7 +24,7 @@ class SettingVC: UIViewController {
         var text: String {
             switch self {
             case .remind:
-                return "Nhắc nhở"
+                return "Cài đặt nhắc nhở"
             case .general:
                 return "Chung"
             case .personal:
@@ -50,9 +50,9 @@ class SettingVC: UIViewController {
         tableview.dataSource = self
         tableview.delegate = self
         tableview.separatorStyle = .none
-        tableview.rowHeight = 30
-        tableview.estimatedRowHeight = 30
-        tableview.sectionHeaderHeight = 30
+        tableview.rowHeight = 42
+        tableview.estimatedRowHeight = 42
+        tableview.sectionHeaderHeight = 35
         tableview.register(ReportCell.self)
         tableview.register(SectionHeaderSetting.self, forHeaderFooterViewReuseIdentifier: "header")
     }
@@ -77,6 +77,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
               let section = Section(rawValue: section)
         else { return nil }
         headerView.label.text = section.text.uppercased()
+        headerView.label.textColor = UIColor.init(hex: "#7C7C7C")
         return headerView
     }
     

@@ -241,4 +241,5 @@ extension UpdateUserInfoVCViewController: UITextFieldDelegate {
 
 extension UIColor {
     static var appColor = UIColor.init(hex: "#A8D4F3")
+    static var appColorBold = UIColor.init(hex: "#3FA7FF")
 }
