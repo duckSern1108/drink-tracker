@@ -7,6 +7,8 @@
 
 import UIKit
 import SwiftDate
+import RxSwift
+import RxGesture
 
 class HomeVC: UIViewController {
     
@@ -16,8 +18,15 @@ class HomeVC: UIViewController {
     @IBOutlet private weak var amountWaterSuperView: UIView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var drinkWaterBtn: UIButton!
+    @IBOutlet weak var parentTbl: UIView!
     
+    @IBOutlet weak var tipLabel: UILabel!
+    @IBOutlet weak var tipView: UIView!
     let MAX_HEIGHT = 200.0
+    let disposeBag = DisposeBag()
+    let tips = ["Nước lọc là lựa chọn tốt nhất cho sức khỏe của bạn","Bạn nên uống nước vào thời điểm phù hợp, chẳng hạn như trước khi ăn, giữa các bữa ăn hoặc sau khi vận động.", "Bạn nên uống nước định kỳ trong suốt cả ngày thay vì uống một lượng lớn nước vào một lúc.", "Uống quá nhiều nước có gas và các đồ uống có chứa caffeine có thể gây ra mất nước trong cơ thể và gây ra tình trạng khô miệng.", "Uống nước ấm giúp giảm cảm giác khát và giúp cơ thể hấp thụ nước tốt hơn."
+    ]
+    var currentTip: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +50,19 @@ class HomeVC: UIViewController {
                 })
             }
         }
+        parentTbl.layer.makeShadow()
         updateWater()
+        tipView.rx.tapGesture().when(.recognized).subscribe { [weak self] _ in
+            guard let self = self else { return }
+            var randomInt = Int(arc4random_uniform(5))
+            if self.currentTip == randomInt {
+                self.currentTip = self.currentTip == 4 ? 3 : (self.currentTip + 1)
+            } else {
+                self.currentTip = randomInt
+            }
+            self.tipLabel.text = self.tips[currentTip]
+        }
+        .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -156,5 +177,21 @@ private class HomeDrinkRecordCell: UITableViewCell {
     func bindData(_ data: DrinkDayResult) {
         amountLabel.text = "\(data.amount) ml"
         timeLabel.text = data.date.convertTo(region: VNRegion).toFormat("HH:mm")
+    }
+}
+
+public extension CALayer {
+    @discardableResult
+    func makeShadow(offSet: CGSize = CGSize(width: 0, height: 2),
+                    opacity: Float = 0.2,
+                    radius: CGFloat = 4,
+                    color: UIColor = UIColor.black) -> CALayer {
+        shadowOffset = offSet
+        shadowOpacity = opacity
+        shadowRadius = radius
+        shadowColor = color.cgColor
+        masksToBounds = false
+        
+        return self
     }
 }

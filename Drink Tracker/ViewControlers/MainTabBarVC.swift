@@ -38,7 +38,7 @@ class MainTabBarVC: UITabBarController {
         super.viewDidLoad()
         setViewControllers([homeVC, historyVC, settingVC], animated: false)
         tabBar.backgroundColor = .white
-        tabBar.tintColor = .black
+        tabBar.tintColor = .appColorBold
     }
 }
 
