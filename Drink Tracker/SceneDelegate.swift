@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UserDefaultService.shared.getAppData()
         let window = UIWindow(windowScene: scene)
         self.window = window
-        AppCoordinator.shared.bind(window: window)
+        AppCoordinator.shared.bind(window: window, notiData: connectionOptions.notificationResponse?.notification)
         window.makeKeyAndVisible()
     }
 

@@ -15,6 +15,7 @@ class HomeVC: UIViewController {
     @IBOutlet private weak var currentDrinkWaterView: UIView!
     @IBOutlet private weak var amountWaterSuperView: UIView!
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var drinkWaterBtn: UIButton!
     
     let MAX_HEIGHT = 200.0
     
@@ -30,6 +31,16 @@ class HomeVC: UIViewController {
         tableView.estimatedRowHeight = 40
         tableView.separatorStyle = .none
         tableView.register(HomeDrinkRecordCell.self)
+        if let notiData = MainTabBarVC.shared.notiData {
+            UIView.animate(withDuration: 0.5, delay: 0.0, animations: {
+                self.drinkWaterBtn.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            }) { isFinished in
+                guard isFinished else { return }
+                UIView.animate(withDuration: 0.5, delay: 0.0, animations: {
+                    self.drinkWaterBtn.transform = CGAffineTransform.identity
+                })
+            }
+        }
         updateWater()
     }
     

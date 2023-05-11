@@ -14,6 +14,7 @@
                 <outlet property="amountWaterSuperView" destination="UrT-tS-aEj" id="PJl-yh-gyV"/>
                 <outlet property="currentDrinkWaterHeight" destination="Ll4-Nb-yBF" id="Oj1-5c-tkk"/>
                 <outlet property="currentDrinkWaterView" destination="RP7-NZ-WWM" id="QZp-m1-xTf"/>
+                <outlet property="drinkWaterBtn" destination="qXC-9f-DLP" id="nkp-x2-bkm"/>
                 <outlet property="tableView" destination="j4A-MD-jPS" id="P8Z-Ik-6iO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="waterAmountLabel" destination="FMg-HV-vD9" id="aNT-TL-oMR"/>

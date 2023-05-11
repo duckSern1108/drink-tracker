@@ -10,6 +10,7 @@ import UIKit
 
 class MainTabBarVC: UITabBarController {
     static let shared = MainTabBarVC()
+    var notiData: UNNotification? = nil
     
     private let homeVC: UIViewController = {
         let homeVC = HomeVC()
@@ -41,14 +42,19 @@ class MainTabBarVC: UITabBarController {
     }
 }
 
+extension MainTabBarVC: UNUserNotificationCenterDelegate {
+    
+}
+
 class AppCoordinator {
     static let shared = AppCoordinator()
     var window: UIWindow!
-    
+    var notiData: UNNotification?
     private init() {}
     
-    func bind(window: UIWindow) {
+    func bind(window: UIWindow, notiData: UNNotification?) {
         self.window = window
+        self.notiData = notiData
         if !AppConfig.shared.isOnboard {
             goToOnboard()
         } else {
@@ -61,6 +67,7 @@ class AppCoordinator {
     }
     
     func goToMainVC() {
+        MainTabBarVC.shared.notiData = notiData
         window.rootViewController = MainTabBarVC.shared        
     }
 }

@@ -44,8 +44,13 @@ class SettingReminderVC: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     @IBAction func onConfirm(_ sender: Any) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
-            guard let self = self else { return }
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            let handler = {
+                Setting.shared.remindHour = self.seletedHour
+                Setting.shared.saveToUserDefault()
+                
+                self.createLocalNotification()
+            }
             
             defer {
                 DispatchQueue.main.async {
@@ -53,18 +58,29 @@ class SettingReminderVC: UIViewController {
                 }
             }
             
-            if let error = error {
-                return
-                // Handle the error here.
-            }
-            if !granted {
+            guard (settings.authorizationStatus == .authorized) ||
+                  (settings.authorizationStatus == .provisional) else {
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
+                    guard let self = self else { return }
+                    if let error = error {
+                        return
+                        // Handle the error here.
+                    }
+                    if !granted {
+                        return
+                    }
+                    handler()
+                }
                 return
             }
             
-            Setting.shared.remindHour = self.seletedHour
-            Setting.shared.saveToUserDefault()
-            
-            self.createLocalNotification()
+            handler()
+
+            if settings.alertSetting == .enabled {
+                // Schedule an alert-only notification.
+            } else {
+                // Schedule a notification with a badge and sound.
+            }
         }
     }
     
@@ -78,11 +94,12 @@ class SettingReminderVC: UIViewController {
     private func createSingleNoti(hour: Int) {
         let content = UNMutableNotificationContent()
         content.title = "Uống nước nào"
-        content.body = "Một cốc nước \(Int(Setting.shared.drinkTarget)) ml"
+        content.body = "Một cốc nước \(Int(Setting.shared.cupSize)) ml"
         
         // Configure the recurring date.
         var dateComponents = DateComponents()
         dateComponents.calendar = Calendar.current
+        dateComponents.timeZone = TimeZone.current
         dateComponents.hour = hour
         
         // Create the trigger as a repeating event.
