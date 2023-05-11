@@ -239,6 +239,40 @@
                                 <constraint firstAttribute="height" constant="30" id="urk-xj-PTI"/>
                             </constraints>
                         </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="w8b-Og-TaO">
+                            <rect key="frame" x="0.0" y="184" width="382" height="20.333333333333343"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giờ thức dậy:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYb-hp-QYz">
+                                    <rect key="frame" x="0.0" y="0.0" width="100.33333333333333" height="20.333333333333332"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Chọn giờ thức dậy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVT-eX-JEw">
+                                    <rect key="frame" x="116.33333333333334" y="0.0" width="265.66666666666663" height="20.333333333333332"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="G4p-hK-w30">
+                            <rect key="frame" x="0.0" y="220.33333333333334" width="382" height="20.333333333333343"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giờ đi ngủ:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pml-M2-Zfy">
+                                    <rect key="frame" x="0.0" y="0.0" width="100.33333333333333" height="20.333333333333332"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Chọn giờ đi ngủ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6b-7G-rLN">
+                                    <rect key="frame" x="116.33333333333334" y="0.0" width="265.66666666666663" height="20.333333333333332"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
                     </subviews>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RoH-8q-YvM">
@@ -331,7 +365,7 @@
                 <constraint firstItem="RoH-8q-YvM" firstAttribute="top" secondItem="r0q-Hz-dF2" secondAttribute="bottom" constant="35" id="lhR-Ja-DoT"/>
                 <constraint firstItem="jpJ-rD-3Qp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="w5r-mY-SHL"/>
             </constraints>
-            <point key="canvasLocation" x="5" y="-11"/>
+            <point key="canvasLocation" x="4.3478260869565224" y="-11.413043478260871"/>
         </view>
     </objects>
     <resources>
