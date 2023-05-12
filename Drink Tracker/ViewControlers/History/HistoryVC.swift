@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Charts
+import SwiftDate
 
 enum DayOfWeek: Int, CaseIterable {
     case monday
@@ -22,6 +24,7 @@ class HistoryVC: UIViewController {
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     @IBOutlet private weak var reportTableView: UITableView!
     @IBOutlet private weak var reportPerWeekView: UIView!
+    @IBOutlet weak var barChartView: BarChartView!
     
     struct Report: Codable {
         var weaklyAmount: Double = 0
@@ -57,6 +60,7 @@ class HistoryVC: UIViewController {
         super.viewDidLoad()
         genReport()
         setupUI()
+        setupChart()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -184,5 +188,72 @@ extension HistoryVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+}
+
+extension HistoryVC {
+    func setupChart(){
+        let drinkHistory = AppConfig.shared.drinkHistory
+        var vals: [DrinkDayResult] = []
+        drinkHistory.forEach { (key: Date, value: [DrinkDayResult]) in
+            if key.compare(.isThisWeek) {
+                vals.append(contentsOf: value)
+            }
+        }
+        var valsFilter: [DrinkDayResult] = []
+        for item in vals {
+            let key = item.date.weekday
+            let valu = item.amount
+            if let exist = valsFilter.firstIndex(where: { $0.date.weekday == key}) {
+                valsFilter[exist].amount += valu
+            } else {
+                let new = DrinkDayResult(amount: valu, date: item.date)
+                valsFilter.append(new)
+            }
+        }
+        valsFilter.sort { $0.date.weekday < $1.date.weekday }
+        var dataEntries: [BarChartDataEntry] = []
+        let days: [String] = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"]
+        barChartView.isUserInteractionEnabled = false
+        barChartView.translatesAutoresizingMaskIntoConstraints = false
+        barChartView.rightAxis.enabled = false
+        barChartView.xAxis.labelPosition = .bottom
+        barChartView.xAxis.drawGridLinesEnabled = false
+        barChartView.leftAxis.drawAxisLineEnabled    = true
+        barChartView.leftAxis.gridLineDashLengths    = [4.0, 6.0]
+        barChartView.leftAxis.gridLineWidth          = 1.0
+        barChartView.xAxis.gridLineDashPhase = 5
+        barChartView.xAxis.labelCount = days.count
+        barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: days)
+        barChartView.legend.enabled = false
+        barChartView.leftAxis.axisMinimum = 0
+        barChartView.leftAxis.axisMaximum = 110
+        barChartView.leftAxis.axisRange = 20
+        
+        // Set up chart data
+        for i in 0...6 {
+            var data = BarChartDataEntry(x: Double(i), y: 0)
+            for v in valsFilter {
+                if v.date.weekday - 2 == i {
+                    data = BarChartDataEntry(x: Double(i), y: v.amount/Setting.shared.drinkTarget * 100)
+                }
+            }
+            dataEntries.append(data)
+        }
+
+        
+        // Set up bar chart data set
+        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "test")
+        chartDataSet.colors = [.appColorBold]
+        chartDataSet.valueFont = UIFont.systemFont(ofSize: 10)
+        chartDataSet.valueColors = [.black]
+        chartDataSet.drawValuesEnabled = true
+        
+        
+        // Set up bar chart data
+        let chartData = BarChartData(dataSet: chartDataSet)
+        
+        // Set bar chart data to the bar chart view
+        barChartView.data = chartData
     }
 }

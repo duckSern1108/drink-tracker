@@ -1,4 +1,8 @@
 PODS:
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -12,35 +16,41 @@ PODS:
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
   - SnapKit (5.6.0)
+  - SwiftAlgorithms (1.0.0)
   - SwiftDate (5.1.0)
 
 DEPENDENCIES:
+  - Charts
   - RxCocoa
   - RxGesture
   - RxKeyboard
   - RxSwift
   - SnapKit
-  - SwiftDate (~> 5.0)
+  - SwiftDate
 
 SPEC REPOS:
   trunk:
+    - Charts
     - RxCocoa
     - RxGesture
     - RxKeyboard
     - RxRelay
     - RxSwift
     - SnapKit
+    - SwiftAlgorithms
     - SwiftDate
 
 SPEC CHECKSUMS:
+  Charts: 354f86803d11d9c35de280587fef50d1af063978
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxKeyboard: 4f5863f43b4ff0cbb2a20b94688d6b80c8a43c14
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
 
-PODFILE CHECKSUM: cbb280b7a4d028fc7c955e6f19fce2b8e527b71e
+PODFILE CHECKSUM: ea4bd29f289730e0121e4fb331dc17a75918cea6
 
 COCOAPODS: 1.11.3
