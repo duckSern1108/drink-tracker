@@ -13,6 +13,8 @@ struct AppConfig: HasSaveToUserDefault {
     
     var todayDrink: [DrinkDayResult] = []
     
+    var customCupSize: [Double] = []
+    
     var currentDrinkWater: Double {
         todayDrink.reduce(0, { $0 + $1.amount })
     }

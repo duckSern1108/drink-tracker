@@ -79,8 +79,8 @@ class UpdateUserInfoVCViewController: UIViewController {
                 UserInfo.shared.height = weight
                 UserInfo.shared.saveToUserDefault()
                 Setting.shared.saveToUserDefault()
-                updateButton.backgroundColor = isActiveButton() ? .appColor : .lightGray
-                updateButton.isUserInteractionEnabled = isActiveButton()
+                self.updateButton.backgroundColor = self.isActiveButton() ? .appColor : .lightGray
+                self.updateButton.isUserInteractionEnabled = self.isActiveButton()
             }
             let vc = BottomSheetVC.newVC(contentVC: editWeightVC, contentHeight: 130)
             vc.modalPresentationStyle = .overFullScreen
@@ -99,8 +99,8 @@ class UpdateUserInfoVCViewController: UIViewController {
                 
                 Setting.shared.drinkTarget = weight * 30
                 Setting.shared.saveToUserDefault()
-                updateButton.backgroundColor = isActiveButton() ? .appColor : .lightGray
-                updateButton.isUserInteractionEnabled = isActiveButton()
+                self.updateButton.backgroundColor = self.isActiveButton() ? .appColor : .lightGray
+                self.updateButton.isUserInteractionEnabled = self.isActiveButton()
             }
             let vc = BottomSheetVC.newVC(contentVC: editWeightVC, contentHeight: 130)
             vc.modalPresentationStyle = .overFullScreen

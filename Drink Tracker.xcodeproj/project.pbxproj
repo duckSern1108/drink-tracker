@@ -44,6 +44,8 @@
 		98890BFF29F674AE006A8D43 /* EditWeightVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98890BFD29F674AE006A8D43 /* EditWeightVC.xib */; };
 		98890C0329F67C16006A8D43 /* PickTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98890C0129F67C16006A8D43 /* PickTimeVC.swift */; };
 		98890C0429F67C16006A8D43 /* PickTimeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98890C0229F67C16006A8D43 /* PickTimeVC.xib */; };
+		98D3D9312A0DF81B00E25F27 /* AddCupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D3D92F2A0DF81B00E25F27 /* AddCupVC.swift */; };
+		98D3D9322A0DF81B00E25F27 /* AddCupVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D3D9302A0DF81B00E25F27 /* AddCupVC.xib */; };
 		98D87FB329D6C9860076511F /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D87FB229D6C9860076511F /* UserDefaultService.swift */; };
 		98D87FB529D6CC600076511F /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D87FB429D6CC600076511F /* DateCell.swift */; };
 		98D87FB829D6D5540076511F /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D87FB629D6D5540076511F /* ReportCell.swift */; };
@@ -98,6 +100,8 @@
 		98890BFD29F674AE006A8D43 /* EditWeightVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditWeightVC.xib; sourceTree = "<group>"; };
 		98890C0129F67C16006A8D43 /* PickTimeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickTimeVC.swift; sourceTree = "<group>"; };
 		98890C0229F67C16006A8D43 /* PickTimeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickTimeVC.xib; sourceTree = "<group>"; };
+		98D3D92F2A0DF81B00E25F27 /* AddCupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCupVC.swift; sourceTree = "<group>"; };
+		98D3D9302A0DF81B00E25F27 /* AddCupVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCupVC.xib; sourceTree = "<group>"; };
 		98D87FB229D6C9860076511F /* UserDefaultService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
 		98D87FB429D6CC600076511F /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		98D87FB629D6D5540076511F /* ReportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
@@ -340,6 +344,8 @@
 			children = (
 				98D87FC729D723B60076511F /* CupSizeVC.swift */,
 				98D87FC829D723B60076511F /* CupSizeVC.xib */,
+				98D3D92F2A0DF81B00E25F27 /* AddCupVC.swift */,
+				98D3D9302A0DF81B00E25F27 /* AddCupVC.xib */,
 			);
 			path = CupSize;
 			sourceTree = "<group>";
@@ -420,6 +426,7 @@
 				981B7B2929D6C8490011D9EE /* OnboardVC.xib in Resources */,
 				986A0FB329F38B8500D1724B /* PickDonViVC.xib in Resources */,
 				981B7B1C29D6C7F80011D9EE /* HomeVC.xib in Resources */,
+				98D3D9322A0DF81B00E25F27 /* AddCupVC.xib in Resources */,
 				98890BFA29F65B91006A8D43 /* BottomSheetVC.xib in Resources */,
 				98D87FB929D6D5540076511F /* ReportCell.xib in Resources */,
 				98890BFF29F674AE006A8D43 /* EditWeightVC.xib in Resources */,
@@ -499,6 +506,7 @@
 				9858617429F68F8D00B778B5 /* DateHelper.swift in Sources */,
 				98D87FBC29D719940076511F /* Setting.swift in Sources */,
 				981B7AEB29D6C4F50011D9EE /* SceneDelegate.swift in Sources */,
+				98D3D9312A0DF81B00E25F27 /* AddCupVC.swift in Sources */,
 				981B7B1529D6C7B70011D9EE /* MainTabBarVC.swift in Sources */,
 				981B7B0729D6C61C0011D9EE /* String+ext.swift in Sources */,
 				98D87FB529D6CC600076511F /* DateCell.swift in Sources */,

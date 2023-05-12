@@ -60,7 +60,7 @@ class HomeVC: UIViewController {
             } else {
                 self.currentTip = randomInt
             }
-            self.tipLabel.text = self.tips[currentTip]
+            self.tipLabel.text = self.tips[self.currentTip]
         }
         .disposed(by: disposeBag)
     }
