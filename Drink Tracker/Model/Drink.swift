@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 struct DrinkDayResult: Codable {
     var amount: Double = 0.0

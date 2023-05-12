@@ -13,7 +13,7 @@ struct Setting: HasSaveToUserDefault {
     var weightDonVi: WeightDonVi = .kg
     var remindHour: Set<Int> = .init()
     
-    var cupSize: Double = 250
+    var cupSize: Double = 100
 }
 
 
