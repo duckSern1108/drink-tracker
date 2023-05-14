@@ -12,12 +12,15 @@ class PickTimeVC: UIViewController {
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var hourPicker: UIPickerView!
     @IBOutlet private weak var minutePicker: UIPickerView!
-    
-    static func newVC(selectedHour: Int, selectedMinute: Int, title: String) -> PickTimeVC {
+    var isDefaultWake: Bool = false
+    var isDefaultSleep: Bool = false
+    static func newVC(selectedHour: Int, selectedMinute: Int, title: String, isDefaultWake: Bool = false, isDefaultSleep: Bool = false) -> PickTimeVC {
         let vc = PickTimeVC()
         vc.selectedHour = selectedHour
         vc.selectedMinute = selectedMinute
         vc.headerTitle = title
+        vc.isDefaultWake = isDefaultWake
+        vc.isDefaultSleep = isDefaultSleep
         return vc
     }
         
@@ -43,6 +46,14 @@ class PickTimeVC: UIViewController {
         minutePicker.delegate = self
         if let selectedMinuteIndex = minuteOptions.firstIndex(where: { $0 == selectedMinute }) {
             minutePicker.selectRow(selectedMinuteIndex, inComponent: 0, animated: false)
+        }
+        if isDefaultWake {
+            hourPicker.selectRow(6, inComponent: 0, animated: false)
+            minutePicker.selectRow(0, inComponent: 0, animated: false)
+        }
+        if isDefaultSleep {
+            hourPicker.selectRow(21, inComponent: 0, animated: false)
+            minutePicker.selectRow(0, inComponent: 0, animated: false)
         }
     }
     

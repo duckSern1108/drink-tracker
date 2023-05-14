@@ -66,7 +66,7 @@ class HomeVC: UIViewController {
             } else {
                 self.currentTip = randomInt
             }
-            self.tipLabel.text = self.tips[self.currentTip]
+            self.tipLabel.text = "Tips: " + self.tips[self.currentTip]
         }
         .disposed(by: disposeBag)
     }
@@ -200,7 +200,7 @@ private class HomeDrinkRecordCell: UITableViewCell {
     }
     
     func bindData(_ data: DrinkDayResult) {
-        amountLabel.text = "\(data.amount) ml"
+        amountLabel.text = "\(Int(data.amount)) ml"
         timeLabel.text = data.date.convertTo(region: VNRegion).toFormat("HH:mm")
     }
 }

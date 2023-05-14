@@ -22,7 +22,6 @@ class SettingReminderVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        genSection()
         
         title = "Hẹn lịch nhắc uống nước"
         navigationController?.navigationBar.topItem?.backButtonTitle = ""
@@ -30,6 +29,7 @@ class SettingReminderVC: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(SettingReminderCell.self)
+        genSection()
     }
     
     private func genSection() {
@@ -37,6 +37,7 @@ class SettingReminderVC: UIViewController {
         let timeGoToSleep = UserInfo.shared.timeGoToSleep.convertTo(region: VNRegion).hour
         sections = Array(stride(from: timeWakeUp, to: timeGoToSleep, by: 1))
         seletedHour = Setting.shared.remindHour
+        collectionView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {

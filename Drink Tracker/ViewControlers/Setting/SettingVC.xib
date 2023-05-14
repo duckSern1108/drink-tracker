@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,22 +21,48 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2FW-J2-sqZ">
-                    <rect key="frame" x="16" y="59" width="361" height="759"/>
+                    <rect key="frame" x="16" y="59" width="361" height="579"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="Ctl-l5-JaL">
+                    <rect key="frame" x="156.66666666666666" y="658" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="04m-M0-dxh"/>
+                        <constraint firstAttribute="height" constant="80" id="lAI-sq-bHJ"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Drink Tracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpl-9I-wN0">
+                    <rect key="frame" x="146.66666666666666" y="738" width="100" height="17"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <color key="textColor" red="0.2470588235" green="0.65490196079999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    Phiên bản 1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8m-28-6kI">
+                    <rect key="frame" x="154.33333333333334" y="763" width="84.666666666666657" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="2FW-J2-sqZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="4u1-Yq-FNb"/>
+                <constraint firstItem="Ctl-l5-JaL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="JH1-3L-Y1Q"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2FW-J2-sqZ" secondAttribute="trailing" constant="16" id="KQR-Nm-A1p"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="2FW-J2-sqZ" secondAttribute="bottom" id="aFw-IG-Q4r"/>
+                <constraint firstItem="K8m-28-6kI" firstAttribute="top" secondItem="cpl-9I-wN0" secondAttribute="bottom" constant="8" id="Ryc-Nm-y6F"/>
+                <constraint firstItem="K8m-28-6kI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="WPc-0m-YsB"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="2FW-J2-sqZ" secondAttribute="bottom" constant="180" id="aFw-IG-Q4r"/>
+                <constraint firstItem="Ctl-l5-JaL" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="-80" id="dFJ-M1-rgn"/>
                 <constraint firstItem="2FW-J2-sqZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="fXl-W1-bsn"/>
+                <constraint firstItem="cpl-9I-wN0" firstAttribute="top" secondItem="Ctl-l5-JaL" secondAttribute="bottom" id="pvE-ru-qYo"/>
+                <constraint firstItem="cpl-9I-wN0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wU4-UR-bV4"/>
             </constraints>
             <point key="canvasLocation" x="36" y="-11"/>
         </view>
     </objects>
     <resources>
+        <image name="icon" width="506" height="521"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

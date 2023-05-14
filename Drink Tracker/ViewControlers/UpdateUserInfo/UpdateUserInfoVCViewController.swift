@@ -107,11 +107,12 @@ class UpdateUserInfoVCViewController: UIViewController {
             self.present(vc, animated: true)
         }
         .disposed(by: disposeBag)
+        
         wakeUpTimeLabel.rx.tapGesture().when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 let vnTime = UserInfo.shared.timeWakeUp.convertTo(region: VNRegion)
-                let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute, title: "Chọn thời gian thức dậy")
+                let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute, title: "Chọn thời gian thức dậy", isDefaultWake: true)
                 pickTimeVC.onConfirmChange = { [weak self] hour, minute in
                     guard let date = DateInRegion(components: {
                         $0.hour = hour
@@ -134,7 +135,7 @@ class UpdateUserInfoVCViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 let vnTime = UserInfo.shared.timeGoToSleep.convertTo(region: VNRegion)
-                let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute, title: "Chọn thời gian đi ngủ")
+                let pickTimeVC = PickTimeVC.newVC(selectedHour: vnTime.hour, selectedMinute: vnTime.minute, title: "Chọn thời gian đi ngủ", isDefaultSleep: true)
                 pickTimeVC.onConfirmChange = { [weak self] hour, minute in
                     guard let date = DateInRegion(components: {
                         $0.hour = hour
@@ -167,6 +168,18 @@ class UpdateUserInfoVCViewController: UIViewController {
      
         AppConfig.shared.isOnboard = true
         AppConfig.shared.saveToUserDefault()
+        guard let dateWakeUp = DateInRegion(components: {
+            $0.hour = 7
+            $0.minute = 0
+        }, region: VNRegion)?.date,
+              let dateSleep = DateInRegion(components: {
+                  $0.hour = 22
+                  $0.minute = 0
+              }, region: VNRegion)?.date
+        else { return }
+        UserInfo.shared.timeGoToSleep = dateSleep
+        UserInfo.shared.timeWakeUp = dateWakeUp
+        UserInfo.shared.saveToUserDefault()
         AppCoordinator.shared.goToMainVC()
     }
     @IBAction func onUpdateBtnPress(_ sender: Any) {

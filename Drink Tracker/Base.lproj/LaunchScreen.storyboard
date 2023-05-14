@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,28 +17,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="idea" translatesAutoresizingMaskIntoConstraints="NO" id="fz1-v2-rfG">
-                                <rect key="frame" x="132.66666666666666" y="346" width="127.99999999999997" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="EOY-Qh-Wad">
+                                <rect key="frame" x="96.666666666666686" y="259" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="128" id="Cn8-gW-qPv"/>
-                                    <constraint firstAttribute="height" constant="128" id="XaX-Cd-Bvz"/>
+                                    <constraint firstAttribute="width" constant="200" id="4Rq-65-Ogl"/>
+                                    <constraint firstAttribute="width" secondItem="EOY-Qh-Wad" secondAttribute="height" id="U1A-ug-1f2"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Nước lọc là lựa chọn tốt nhất cho sức khỏe của bạn&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCl-zb-gcf">
-                                <rect key="frame" x="20" y="504.00000000000006" width="353" height="40.666666666666686"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drink Tracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUt-5b-ApG">
+                                <rect key="frame" x="122" y="459" width="149" height="28.666666666666686"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="0.2470588235" green="0.65490196079999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="FCl-zb-gcf" firstAttribute="top" secondItem="fz1-v2-rfG" secondAttribute="bottom" constant="30" id="NAh-Ms-rai"/>
-                            <constraint firstItem="fz1-v2-rfG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="P2p-Sx-04m"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FCl-zb-gcf" secondAttribute="trailing" constant="20" id="cHf-gQ-jgY"/>
-                            <constraint firstItem="fz1-v2-rfG" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-16" id="oOw-dm-lh2"/>
-                            <constraint firstItem="FCl-zb-gcf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="x21-Y6-KDw"/>
+                            <constraint firstItem="tUt-5b-ApG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="65l-dq-zJR"/>
+                            <constraint firstItem="EOY-Qh-Wad" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="200" id="HSP-pc-l5s"/>
+                            <constraint firstItem="tUt-5b-ApG" firstAttribute="top" secondItem="EOY-Qh-Wad" secondAttribute="bottom" id="jqM-ef-vEJ"/>
+                            <constraint firstItem="EOY-Qh-Wad" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="w9U-ZB-afW"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -48,9 +47,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="idea" width="128" height="128"/>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="icon" width="506" height="521"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
