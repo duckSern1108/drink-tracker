@@ -130,12 +130,13 @@ extension SettingReminderVC: UICollectionViewDataSource, UICollectionViewDelegat
         let cell = collectionView.dequeue(SettingReminderCell.self, indexPath)
         let data = sections[indexPath.row]
         cell.bind(time: data, isActive: seletedHour.contains(data))
-        cell.onChangeSetting = { [weak self] time, isActive in
+        cell.onChangeSetting = { [weak self, indexPath] time, isActive in
             if isActive {
                 self?.seletedHour.insert(time)
             } else {
                 self?.seletedHour.remove(time)
             }
+            self?.collectionView.reloadItems(at: [indexPath])
         }
         return cell
     }
