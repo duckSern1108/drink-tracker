@@ -10,13 +10,32 @@ import Charts
 import SwiftDate
 
 enum DayOfWeek: Int, CaseIterable {
-    case monday = 2
-    case tuesday = 3
-    case wenseday = 4
-    case thursday = 5
-    case friday = 6
-    case saturday = 7
-    case sunday = 8
+    case monday
+    case tuesday
+    case wenseday
+    case thursday
+    case friday
+    case saturday
+    case sunday
+    
+    var index: Int {
+        switch self {
+        case .monday:
+            return 2
+        case .tuesday:
+            return 3
+        case .wenseday:
+            return 4
+        case .thursday:
+            return 5
+        case .friday:
+            return 6
+        case .saturday:
+            return 7
+        case .sunday:
+            return 8
+        }
+    }
 }
 
 class HistoryVC: UIViewController {

@@ -64,7 +64,7 @@ class DateCell: UICollectionViewCell {
         customLabel.text = "\(dayOfWeek.minimumText)"
         backgroundColor = UIColor(hex: "EBEBEB")
         imgView.image = valsFilter.contains(where: { v in
-            v.date.weekday == dayOfWeek.rawValue
+            v.date.weekday == dayOfWeek.index
         }) ? UIImage(named: "blue_drop") : UIImage(named: "gray_drop")
         
     }
