@@ -12,6 +12,9 @@ import RxGesture
 
 class HomeVC: UIViewController {
     
+    @IBOutlet weak var currentGlassImage: UIImageView!
+    @IBOutlet weak var currentGlassLb: UILabel!
+    @IBOutlet weak var currentRecord: UILabel!
     @IBOutlet weak var waterAmountLabel: UILabel!
     @IBOutlet weak var currentDrinkWaterHeight: NSLayoutConstraint!
     @IBOutlet private weak var currentDrinkWaterView: UIView!
@@ -33,7 +36,10 @@ class HomeVC: UIViewController {
         
         amountWaterSuperView.layer.borderWidth = 1
         amountWaterSuperView.layer.borderColor = UIColor(hex: "5C5C5C").cgColor
-        
+        self.currentRecord.text = "\(Int(AppConfig.shared.currentDrinkWater))/\(Int(Setting.shared.drinkTarget)) ml"
+        self.currentGlassLb.text = "+\(Int(Setting.shared.cupSize)) ml"
+        currentGlassImage.image = imageForCup(size: Setting.shared.cupSize)
+        waterAmountLabel.isHidden = true
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 40
@@ -54,7 +60,7 @@ class HomeVC: UIViewController {
         updateWater()
         tipView.rx.tapGesture().when(.recognized).subscribe { [weak self] _ in
             guard let self = self else { return }
-            var randomInt = Int(arc4random_uniform(5))
+            let randomInt = Int(arc4random_uniform(5))
             if self.currentTip == randomInt {
                 self.currentTip = self.currentTip == 4 ? 3 : (self.currentTip + 1)
             } else {
@@ -73,6 +79,7 @@ class HomeVC: UIViewController {
         UIView.animate(withDuration: 0.5, delay: 0.0,options: .curveEaseInOut) {
             self.currentDrinkWaterHeight.constant = self.MAX_HEIGHT * min(1,(AppConfig.shared.currentDrinkWater / Setting.shared.drinkTarget))
             self.waterAmountLabel.text = "\(Int(AppConfig.shared.currentDrinkWater)) ml"
+            self.currentRecord.text = "\(Int(AppConfig.shared.currentDrinkWater))/\(Int(Setting.shared.drinkTarget)) ml"
             self.amountWaterSuperView.layoutIfNeeded()
         }
         
@@ -88,8 +95,26 @@ class HomeVC: UIViewController {
     
     @IBAction func onChangeCup(_ sender: Any) {
         let vc = CupSizeVC()
+        vc.onChangeCup = { [weak self] amount in
+            guard let self = self else { return }
+            self.currentGlassImage.image = self.imageForCup(size: amount)
+            self.currentGlassLb.text = "+\(Int(amount)) ml"
+        }
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func imageForCup(size: Double) -> UIImage? {
+        switch size {
+        case 1..<300:
+            return UIImage(named: "bottle_small")
+        case 300..<400:
+            return UIImage(named: "bottle_medium")
+        case 400...500:
+            return UIImage(named: "bottle_big")
+        default:
+            return UIImage(named: "bottle")
+        }
     }
 }
 

@@ -122,9 +122,10 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
             break
             
         case .donVi:
-            let vc = BottomSheetVC.newVC(contentVC: PickDonViVC(), contentHeight: 400)
-            vc.modalPresentationStyle = .overFullScreen
-            MainTabBarVC.shared.present(vc, animated: true)
+//            let vc = BottomSheetVC.newVC(contentVC: PickDonViVC(), contentHeight: 400)
+//            vc.modalPresentationStyle = .overFullScreen
+//            MainTabBarVC.shared.present(vc, animated: true)
+            break
         case .targetDrink:
             break
             

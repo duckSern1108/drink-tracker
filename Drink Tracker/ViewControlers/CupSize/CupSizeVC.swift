@@ -12,7 +12,7 @@ class CupSizeVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var selectIndex: Int = -1
-    
+    var onChangeCup:((Double) -> Void)?
     var cupSize: [Double] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,6 @@ class CupSizeVC: UIViewController {
     
     func genData() {
         cupSize = [
-            100,
             200,
             300,
             400,
@@ -52,7 +51,7 @@ class CupSizeVC: UIViewController {
         }
         guard selectIndex >= 0 else { return }
         Setting.shared.cupSize = Double(cupSize[selectIndex])
-        
+        onChangeCup?( Double(cupSize[selectIndex]))
         Setting.shared.saveToUserDefault()
     }
     @IBAction func onBack(_ sender: Any) {
@@ -61,9 +60,7 @@ class CupSizeVC: UIViewController {
     
     func imageForCup(size: Double) -> UIImage? {
         switch size {
-        case 100..<200:
-            return UIImage(named: "cup")
-        case 200..<300:
+        case 1..<300:
             return UIImage(named: "bottle_small")
         case 300..<400:
             return UIImage(named: "bottle_medium")
