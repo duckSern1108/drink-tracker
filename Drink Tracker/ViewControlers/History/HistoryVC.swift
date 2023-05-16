@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import Charts
 import SwiftDate
 
@@ -59,10 +61,12 @@ enum DayOfWeek: Int, CaseIterable {
 
 class HistoryVC: UIViewController {
     
-    @IBOutlet weak var calendarCollectionView: UICollectionView!
+    @IBOutlet private weak var calendarCollectionView: UICollectionView!
     @IBOutlet private weak var reportTableView: UITableView!
     @IBOutlet private weak var reportPerWeekView: UIView!
-    @IBOutlet weak var barChartView: BarChartView!
+    @IBOutlet private weak var barChartView: BarChartView!
+    
+    private let disposeBag = DisposeBag()
     
     struct Report: Codable {
         // T2 -> CN
@@ -101,6 +105,17 @@ class HistoryVC: UIViewController {
         setupUI()
         genReport()
         setupChart()
+        
+        NotificationCenter.default.rx
+            .notification(UIApplication.didBecomeActiveNotification)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.genReport()
+                self.setupChart()
+                self.calendarCollectionView.reloadData()
+                self.reportTableView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -63,6 +63,7 @@ class HomeVC: UIViewController {
         }
         parentTbl.layer.makeShadow()
         updateWater()
+        
         tipView.rx.tapGesture().when(.recognized).subscribe { [weak self] _ in
             guard let self = self else { return }
             let randomInt = Int(arc4random_uniform(5))
@@ -74,6 +75,17 @@ class HomeVC: UIViewController {
             self.tipLabel.text = "Tips: " + self.tips[self.currentTip]
         }
         .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx
+            .notification(UIApplication.didBecomeActiveNotification)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.currentRecord.text = "\(Int(AppConfig.shared.currentDrinkWater))/\(Int(Setting.shared.drinkTarget)) ml"
+                self.currentGlassLb.text = "+\(Int(Setting.shared.cupSize)) ml"
+                self.updateWater()
+                self.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
