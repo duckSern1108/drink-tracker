@@ -284,7 +284,7 @@ extension HistoryVC {
         barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: DayOfWeek.allCases.map { $0.text })
         barChartView.legend.enabled = false
         barChartView.leftAxis.axisMinimum = 0
-        barChartView.leftAxis.axisMaximum = 110
+        barChartView.leftAxis.axisMaximum = 150
         barChartView.leftAxis.axisRange = 20
         
         // Set up chart data
