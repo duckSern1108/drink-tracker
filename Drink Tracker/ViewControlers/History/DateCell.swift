@@ -41,31 +41,10 @@ class DateCell: UICollectionViewCell {
         backgroundColor = selected ? UIColor(hex: "EBEBEB") : UIColor.clear
     }
 
-    func bindData(_ dayOfWeek: DayOfWeek) {
-        let drinkHistory = AppConfig.shared.drinkHistory
-        var vals: [DrinkDayResult] = []
-        drinkHistory.forEach { (key: Date, value: [DrinkDayResult]) in
-            if key.compare(.isThisWeek) {
-                vals.append(contentsOf: value)
-            }
-        }
-        var valsFilter: [DrinkDayResult] = []
-        for item in vals {
-            let key = item.date.weekday
-            let valu = item.amount
-            if let exist = valsFilter.firstIndex(where: { $0.date.weekday == key}) {
-                valsFilter[exist].amount += valu
-            } else {
-                let new = DrinkDayResult(amount: valu, date: item.date)
-                valsFilter.append(new)
-            }
-        }
-        valsFilter.sort { $0.date.weekday < $1.date.weekday }
+    func bindData(_ dayOfWeek: DayOfWeek, isDone: Bool) {
         customLabel.text = "\(dayOfWeek.minimumText)"
         backgroundColor = UIColor(hex: "EBEBEB")
-        imgView.image = valsFilter.contains(where: { v in
-            v.date.weekday == dayOfWeek.index
-        }) ? UIImage(named: "blue_drop") : UIImage(named: "gray_drop")
+        imgView.image = isDone ? UIImage(named: "blue_drop") : UIImage(named: "gray_drop")
         
     }
 }

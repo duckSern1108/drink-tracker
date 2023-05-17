@@ -27,7 +27,12 @@ class HomeVC: UIViewController {
     @IBOutlet weak var tipView: UIView!
     let MAX_HEIGHT = 200.0
     let disposeBag = DisposeBag()
-    let tips = ["Nước lọc là lựa chọn tốt nhất cho sức khỏe của bạn","Bạn nên uống nước vào thời điểm phù hợp, chẳng hạn như trước khi ăn, giữa các bữa ăn hoặc sau khi vận động.", "Bạn nên uống nước định kỳ trong suốt cả ngày thay vì uống một lượng lớn nước vào một lúc.", "Uống quá nhiều nước có gas và các đồ uống có chứa caffeine có thể gây ra mất nước trong cơ thể và gây ra tình trạng khô miệng.", "Uống nước ấm giúp giảm cảm giác khát và giúp cơ thể hấp thụ nước tốt hơn."
+    let tips = [
+        "Nước lọc là lựa chọn tốt nhất cho sức khỏe của bạn",
+        "Bạn nên uống nước vào thời điểm phù hợp, chẳng hạn như trước khi ăn, giữa các bữa ăn hoặc sau khi vận động.",
+        "Bạn nên uống nước định kỳ trong suốt cả ngày thay vì uống một lượng lớn nước vào một lúc.",
+        "Uống quá nhiều nước có gas và các đồ uống có chứa caffeine có thể gây ra mất nước trong cơ thể và gây ra tình trạng khô miệng.",
+        "Uống nước ấm giúp giảm cảm giác khát và giúp cơ thể hấp thụ nước tốt hơn."
     ]
     var currentTip: Int = 0
     
@@ -78,6 +83,11 @@ class HomeVC: UIViewController {
     func updateWater() {
         UIView.animate(withDuration: 0.5, delay: 0.0,options: .curveEaseInOut) {
             self.currentDrinkWaterHeight.constant = self.MAX_HEIGHT * min(1,(AppConfig.shared.currentDrinkWater / Setting.shared.drinkTarget))
+            if self.currentDrinkWaterHeight.constant > 0.7 {
+                self.currentRecord.textColor = .white
+            } else {
+                self.currentRecord.textColor = .black
+            }
             self.waterAmountLabel.text = "\(Int(AppConfig.shared.currentDrinkWater)) ml"
             self.currentRecord.text = "\(Int(AppConfig.shared.currentDrinkWater))/\(Int(Setting.shared.drinkTarget)) ml"
             self.amountWaterSuperView.layoutIfNeeded()

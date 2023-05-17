@@ -36,6 +36,25 @@ enum DayOfWeek: Int, CaseIterable {
             return 8
         }
     }
+    
+    var text: String {
+        switch self {
+        case .monday:
+            return "Thứ 2"
+        case .tuesday:
+            return "Thứ 3"
+        case .wenseday:
+            return "Thứ 4"
+        case .thursday:
+            return "Thứ 5"
+        case .friday:
+            return "Thứ 6"
+        case .saturday:
+            return "Thứ 7"
+        case .sunday:
+            return "Chủ nhật"
+        }
+    }
 }
 
 class HistoryVC: UIViewController {
@@ -46,6 +65,8 @@ class HistoryVC: UIViewController {
     @IBOutlet weak var barChartView: BarChartView!
     
     struct Report: Codable {
+        // T2 -> CN
+        var weekDayFinishTarget: [Double] = []
         var weaklyAmount: Double = 0
         var monthlyAmount: Double = 0
         var percentFinish: Double = 0
@@ -77,8 +98,8 @@ class HistoryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        genReport()
         setupUI()
+        genReport()
         setupChart()
     }
     
@@ -88,48 +109,69 @@ class HistoryVC: UIViewController {
     }
     
     func genReport() {
-        let drinkHistory = AppConfig.shared.drinkHistory
-        guard !drinkHistory.isEmpty else { return }
-        let sortedDate = drinkHistory.keys.sorted(by: >)
-        
-        var startMonthDate: Date = sortedDate.first!
-        var countMonth: Double = 1
-        
-        var startWeekDate: Date = sortedDate.first!
-        var countWeek: Double = 1
-        
-        let countDay = Double(drinkHistory.keys.count)
-        var countDayReachTarget = 0.0
-        
-        var totalDrink: Double = 0
-        
-        var drinkTimes: Int = 0
-        sortedDate.forEach { date in
-            let dateTotalAmount = drinkHistory[date]!.reduce(0, { $0 + $1.amount })
-            countDayReachTarget += dateTotalAmount < Setting.shared.drinkTarget ? 0 : 1
-            totalDrink += dateTotalAmount
-            print(drinkHistory[date]!.count)
-            drinkTimes += drinkHistory[date]!.count
+        DispatchQueue.global(qos: .background).sync {
+            let drinkHistory = AppConfig.shared.drinkHistory
+            guard !drinkHistory.isEmpty else { return }
             
-            if date.month == startMonthDate.month && date.year == startMonthDate.year {
-            } else {
-                startMonthDate = date
-                countMonth += 1
+            let startDayOfWeek = DateInRegion(region: VNRegion).dateAt(.startOfWeek)
+            
+            let allDate = drinkHistory.keys
+            
+            let weekDayFinishTarget = DayOfWeek.allCases.map { dayOfWeek in
+                let date = startDayOfWeek + dayOfWeek.rawValue.days
+                let index = allDate.firstIndex(where: { d in
+                    DateInRegion(d,region: VNRegion).compare(toDate: date, granularity: .day) == .orderedSame
+                })
+                if let index = index,
+                   let dateHistory = drinkHistory[allDate[index]] {
+                    let totalDrink = dateHistory.reduce(0, { $0 + $1.amount })
+                    return totalDrink
+                } else {
+                    return 0
+                }
             }
             
-            if date.compare(toDate: startWeekDate, granularity: .weekdayOrdinal) == .orderedSame {
-            } else {
-                startWeekDate = date
-                countWeek += 1
+            let sortedDate = drinkHistory.keys.sorted(by: >)
+            
+            var startMonthDate: Date = sortedDate.first!
+            var countMonth: Double = 1
+            
+            var startWeekDate: Date = sortedDate.first!
+            var countWeek: Double = 1
+            
+            let countDay = Double(drinkHistory.keys.count)
+            var countDayReachTarget = 0.0
+            
+            var totalDrink: Double = 0
+            
+            var drinkTimes: Int = 0
+            sortedDate.forEach { date in
+                let dateTotalAmount = drinkHistory[date]!.reduce(0, { $0 + $1.amount })
+                countDayReachTarget += dateTotalAmount < Setting.shared.drinkTarget ? 0 : 1
+                totalDrink += dateTotalAmount
+                drinkTimes += drinkHistory[date]!.count
+                
+                if date.month == startMonthDate.month && date.year == startMonthDate.year {
+                } else {
+                    startMonthDate = date
+                    countMonth += 1
+                }
+                
+                if date.compare(toDate: startWeekDate, granularity: .weekdayOrdinal) == .orderedSame {
+                } else {
+                    startWeekDate = date
+                    countWeek += 1
+                }
             }
+            
+            report = Report(
+                weekDayFinishTarget: weekDayFinishTarget,
+                weaklyAmount: totalDrink / countWeek,
+                monthlyAmount: totalDrink / countMonth,
+                percentFinish: countDayReachTarget / countDay * 100,
+                drinkFrequency: drinkTimes / Int(countDay)
+            )
         }
-        
-        report = Report(
-            weaklyAmount: totalDrink / countWeek,
-            monthlyAmount: totalDrink / countMonth,
-            percentFinish: countDayReachTarget / countDay * 100,
-            drinkFrequency: drinkTimes / Int(countDay)
-        )
     }
     
     func setupUI() {
@@ -155,7 +197,9 @@ class HistoryVC: UIViewController {
 extension HistoryVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(DateCell.self, indexPath)
-        cell.bindData(DayOfWeek(rawValue: indexPath.row) ?? .monday)
+        cell.bindData(
+            DayOfWeek(rawValue: indexPath.row) ?? .monday,
+            isDone: report.weekDayFinishTarget[indexPath.row] >= Setting.shared.drinkTarget)
         return cell
     }
     
@@ -212,27 +256,6 @@ extension HistoryVC: UITableViewDataSource, UITableViewDelegate {
 
 extension HistoryVC {
     func setupChart(){
-        let drinkHistory = AppConfig.shared.drinkHistory
-        var vals: [DrinkDayResult] = []
-        drinkHistory.forEach { (key: Date, value: [DrinkDayResult]) in
-            if key.compare(.isThisWeek) {
-                vals.append(contentsOf: value)
-            }
-        }
-        var valsFilter: [DrinkDayResult] = []
-        for item in vals {
-            let key = item.date.weekday
-            let valu = item.amount
-            if let exist = valsFilter.firstIndex(where: { $0.date.weekday == key}) {
-                valsFilter[exist].amount += valu
-            } else {
-                let new = DrinkDayResult(amount: valu, date: item.date)
-                valsFilter.append(new)
-            }
-        }
-        valsFilter.sort { $0.date.weekday < $1.date.weekday }
-        var dataEntries: [BarChartDataEntry] = []
-        let days: [String] = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"]
         barChartView.isUserInteractionEnabled = false
         barChartView.translatesAutoresizingMaskIntoConstraints = false
         barChartView.rightAxis.enabled = false
@@ -242,24 +265,17 @@ extension HistoryVC {
         barChartView.leftAxis.gridLineDashLengths    = [4.0, 6.0]
         barChartView.leftAxis.gridLineWidth          = 1.0
         barChartView.xAxis.gridLineDashPhase = 5
-        barChartView.xAxis.labelCount = days.count
-        barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: days)
+        barChartView.xAxis.labelCount = DayOfWeek.allCases.count
+        barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: DayOfWeek.allCases.map { $0.text })
         barChartView.legend.enabled = false
         barChartView.leftAxis.axisMinimum = 0
         barChartView.leftAxis.axisMaximum = 110
         barChartView.leftAxis.axisRange = 20
         
         // Set up chart data
-        for i in 0...6 {
-            var data = BarChartDataEntry(x: Double(i), y: 0)
-            for v in valsFilter {
-                if v.date.weekday - 2 == i {
-                    data = BarChartDataEntry(x: Double(i), y: v.amount/Setting.shared.drinkTarget * 100)
-                }
-            }
-            dataEntries.append(data)
+        let dataEntries: [BarChartDataEntry] = DayOfWeek.allCases.map {
+            BarChartDataEntry(x: Double($0.rawValue), y: report.weekDayFinishTarget[$0.rawValue]/Setting.shared.drinkTarget * 100)
         }
-
         
         // Set up bar chart data set
         let chartDataSet = BarChartDataSet(entries: dataEntries, label: "test")
