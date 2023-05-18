@@ -83,11 +83,6 @@ class HomeVC: UIViewController {
     func updateWater() {
         UIView.animate(withDuration: 0.5, delay: 0.0,options: .curveEaseInOut) {
             self.currentDrinkWaterHeight.constant = self.MAX_HEIGHT * min(1,(AppConfig.shared.currentDrinkWater / Setting.shared.drinkTarget))
-            if self.currentDrinkWaterHeight.constant > 0.7 {
-                self.currentRecord.textColor = .white
-            } else {
-                self.currentRecord.textColor = .black
-            }
             self.waterAmountLabel.text = "\(Int(AppConfig.shared.currentDrinkWater)) ml"
             self.currentRecord.text = "\(Int(AppConfig.shared.currentDrinkWater))/\(Int(Setting.shared.drinkTarget)) ml"
             self.amountWaterSuperView.layoutIfNeeded()
