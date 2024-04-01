@@ -1,0 +1,44 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :custom_lane do
+    # add actions here: https://docs.fastlane.tools/actions
+  end
+
+desc "Runs all the Unit Tests"
+lane :tests do
+  # Publish Mac Notification
+   notification(subtitle: "Lane Executing Test Cases", message: "Test Cases!")
+  # Check if reports folder exists
+   # This step is optional - if you want to keep all reports like test cases, coverage, docs etc              under a specific folder.
+#            sh(" if [ ! -d #{project_directory} ] 
+#            then
+#                mkdir #{project_directory}
+#            fi ")
+  # Run tests
+  run_tests(clean: true,
+            fail_build: false,
+            scheme: "Drink Tracker",
+            code_coverage: true,
+            device: "iPhone 11",
+            output_types: "html,junit",
+            output_directory: "reports/")
+  end
+
+end
