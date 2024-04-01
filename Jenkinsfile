@@ -147,7 +147,7 @@ pipeline {
                                     sh """
                                     #!/bin/bash
                                     echo "Executing Fastlane test lane..."
-                                    ${env.FASTLANE}" tests
+                                    bundle exec fastlane tests
                                     """
                                 } catch(exc) {
                                     currentBuild.result = "UNSTABLE"
