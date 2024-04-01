@@ -29,7 +29,7 @@ pipeline {
         APP_TARGET = 'Drink Tracker'
         APP_SCHEME = 'Drink Tracker'
         APP_PROJECT = 'Drink Tracker.xcodeproj'
-        APP_WORKSPACE = Drink\ Tracker.xcworkspace
+        APP_WORKSPACE = 'Drink\ Tracker.xcworkspace'
         APP_TEST_SCHEME = 'Drink Tracker'
 
     APP_BUILD_CONFIG = 'Debug'
