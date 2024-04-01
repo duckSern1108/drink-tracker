@@ -26,7 +26,7 @@ pipeline {
         APP_NAME = 'Drink Tracker'
         BUILD_NAME = 'Drink Tracker'
         
-        APP_TARGET = 'AdManagerTest'
+        APP_TARGET = 'Drink Tracker'
         APP_SCHEME = 'Drink Tracker'
         APP_PROJECT = 'Drink Tracker.xcodeproj'
         APP_WORKSPACE = 'Drink Tracker.xcworkspace'
