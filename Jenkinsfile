@@ -29,7 +29,7 @@ pipeline {
         APP_TARGET = 'Drink Tracker'
         APP_SCHEME = 'Drink Tracker'
         APP_PROJECT = 'Drink Tracker.xcodeproj'
-        APP_WORKSPACE = 'Drink\ Tracker.xcworkspace'
+        APP_WORKSPACE = 'Drink Tracker.xcworkspace'
         APP_TEST_SCHEME = 'Drink Tracker'
 
     APP_BUILD_CONFIG = 'Debug'
@@ -168,7 +168,7 @@ pipeline {
                 script {
                     if (env.BUILD_VARIANT == 'Debug_Scan_Only') {
                         stage ('Scan - Build Only') {
-                            sh "xcodebuild -workspace ${env.APP_WORKSPACE} -scheme ${env.APP_SCHEME} -sdk iphoneos -configuration \"${env.APP_BUILD_CONFIG}\" CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS=\"\" CODE_SIGNING_ALLOWED=\"NO\" build"
+                            sh "xcodebuild -workspace '${env.APP_WORKSPACE}' -scheme '${env.APP_SCHEME}' -sdk iphoneos -configuration \"${env.APP_BUILD_CONFIG}\" CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS=\"\" CODE_SIGNING_ALLOWED=\"NO\" build"
                         }
                     } else {
                         stage ('Distribute - Build & Archive') {
