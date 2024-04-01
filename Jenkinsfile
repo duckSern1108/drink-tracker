@@ -32,7 +32,7 @@ pipeline {
         APP_WORKSPACE = 'Drink Tracker.xcworkspace'
         APP_TEST_SCHEME = 'Drink Tracker'
 
-    APP_BUILD_CONFIG = 'Release'
+    APP_BUILD_CONFIG = 'Debug'
     APP_EXPORT_METHOD = 'app-store'
     APP_COMPILE_BITCODE = false
     GROUPS = 'Distribution group name'
