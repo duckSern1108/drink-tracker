@@ -129,7 +129,7 @@ pipeline {
                         sh """
                         #!/bin/bash
                         echo "Pod install..."
-                        bundle exec pod install
+                        pod install
                         """
                     } catch(exc) {
                         currentBuild.result = "UNSTABLE"
