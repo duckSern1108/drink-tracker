@@ -23,14 +23,14 @@ pipeline {
         LANG = 'en_US.UTF-8'
         LANGUAGE = 'en_US.UTF-8'
 
-        APP_NAME = 'AdManagerTest'
-        BUILD_NAME = 'AdManagerTest'
+        APP_NAME = 'Drink Tracker'
+        BUILD_NAME = 'Drink Tracker'
         
         APP_TARGET = 'AdManagerTest'
-        APP_SCHEME = 'AdManagerTest'
-        APP_PROJECT = 'AdManagerTest.xcodeproj'
-        APP_WORKSPACE = 'AdManagerTest.xcworkspace'
-        APP_TEST_SCHEME = 'AdManagerTest'
+        APP_SCHEME = 'Drink Tracker'
+        APP_PROJECT = 'Drink Tracker.xcodeproj'
+        APP_WORKSPACE = 'Drink Tracker.xcworkspace'
+        APP_TEST_SCHEME = 'Drink Tracker'
 
     APP_BUILD_CONFIG = 'Release'
     APP_EXPORT_METHOD = 'app-store'
