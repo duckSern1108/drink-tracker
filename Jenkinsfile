@@ -46,6 +46,8 @@ pipeline {
         BRANCH_NAME = 'Release/multibranchpipeline_ios'
         APP_CLEAN_BUILD = false
         PUBLISH_TO_CHANNEL = 'teams'
+        
+        FASTLANE = 'bundle exec fastlane'
     }
 
     options {
@@ -119,6 +121,24 @@ pipeline {
                 }
             }
         }
+        
+        stage('Pod install') {
+            steps {
+                script {
+                    try {
+                        sh """
+                        #!/bin/bash
+                        echo "Pod install..."
+                        bundle exec pod install
+                        """
+                    } catch(exc) {
+                        currentBuild.result = "UNSTABLE"
+                        error('There are failed tests.')
+                    }
+                }
+            }
+        
+        }
 
         stage('Unit Test cases') {
                     steps {
@@ -127,7 +147,7 @@ pipeline {
                                     sh """
                                     #!/bin/bash
                                     echo "Executing Fastlane test lane..."
-                                    fastlane tests
+                                    ${env.FASTLANE}" tests
                                     """
                                 } catch(exc) {
                                     currentBuild.result = "UNSTABLE"
