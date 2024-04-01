@@ -31,5 +31,11 @@ final class Drink_Tracker_Tests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func test_add_func() {
+        let exp = 2
+        let ret = 1 + 3
+        XCTAssertEqual(exp, ret, "Test Add Func")
+    }
 
 }
