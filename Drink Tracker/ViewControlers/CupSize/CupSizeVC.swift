@@ -14,6 +14,7 @@ class CupSizeVC: UIViewController {
     var selectIndex: Int = -1
     var onChangeCup:((Double) -> Void)?
     var cupSize: [Double] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
