@@ -186,29 +186,6 @@ pipeline {
     }
 
     post {
-        success {
-            office365ConnectorSend color: '#86BC25', status: currentBuild.result, webhookUrl: "${ env.WEBHOOK_URL }",
-            message: "Successfully Build: ${JOB_NAME} - ${currentBuild.displayName}<br>Pipeline duration: ${currentBuild.durationString.replace(' and counting', '')}",
-            factDefinitions: [[name: "Build Name:", template: "${env.APP_BUILD_NAME}"],
-                              [name: "App Version:", template: "${env.BUNDLE_SHORT_VERSION}(${env.BUILD_NUMBER_XCODE})"],
-                              [name: "Last Commit", template: "${env.GIT_COMMIT_MSG}"]]
-        }
-
-        unstable {
-            office365ConnectorSend color: '#FFE933', status: currentBuild.result, webhookUrl: "${ env.WEBHOOK_URL }",
-            message: "Successfully Build but Unstable. Unstable means test failure, code violation, push to remote failed etc. : ${JOB_NAME} - ${currentBuild.displayName}<br>Pipeline duration: ${currentBuild.durationString.replace(' and counting', '')}",
-            factDefinitions: [[name: "Build Name:", template: "${env.APP_BUILD_NAME}"],
-                              [name: "App Version:", template: "${env.BUNDLE_SHORT_VERSION}(${env.BUILD_NUMBER_XCODE})"],
-                              [name: "Last Commit", template: "${env.GIT_COMMIT_MSG}"]]
-        }
-
-        failure {
-            office365ConnectorSend color: '#ff0000', status: currentBuild.result, webhookUrl: "${ env.WEBHOOK_URL }",
-            message: "Build Failed: ${JOB_NAME} - ${currentBuild.displayName}<br>Pipeline duration: ${currentBuild.durationString.replace(' and counting', '')}",
-            factDefinitions: [[name: "Build Name:", template: "${env.APP_BUILD_NAME}"],
-                              [name: "App Version:", template: "${env.BUNDLE_SHORT_VERSION}(${env.BUILD_NUMBER_XCODE})"],
-                              [name: "Last Commit", template: "${env.GIT_COMMIT_MSG}"]]
-        }
 
         always {
             echo "Build completed with status: ${currentBuild.result}"
