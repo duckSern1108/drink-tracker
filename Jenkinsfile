@@ -161,55 +161,6 @@ pipeline {
                             }
                         }
         }
-        
-        stage('Quality checks - Report') {
-            parallel {
-                stage('Linting') {
-                    when {
-                        expression { env.APP_STATIC_CODE_ANALYZER_REPORT == 'true' }
-                    }
-                    steps {
-                        script {
-                                sh """
-                                #!/bin/bash
-                                echo "Executing Fastlane Linting lane..."
-                                ${ env.FASTLANE } lint
-                                """
-                            }
-                        }
-                            post {
-                                always {
-                                    script {
-                                            // find and publish lint results
-                                            def checkStyleIssues = scanForIssues tool: checkStyle(pattern: '**/reports/swiftlint.xml')
-                                            publishIssues issues: [checkStyleIssues]
-                                        }
-                                }
-                            }
-                    }
-
-                    stage('Code Coverage') {
-                        when {
-                            expression { env.APP_COVERAGE_REPORT == 'true' }
-                        }
-                        steps {
-                            script {
-                                sh """
-                                #!/bin/bash
-                                echo "Executing Fastlane Code Coverage lane..."
-                                ${ env.FASTLANE } code_coverage
-                                """
-                            }
-                        }
-                        post {
-                            success {
-                                //step([$class: 'CoberturaPublisher', coberturaReportFile: '**/reports/cobertura.xml', autoUpdateHealth: false, autoUpdateStability: false,failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
-                                cobertura coberturaReportFile: '**/reports/cobertura.xml', enableNewApi: true
-                            }
-                        }
-                    }
-            }
-        }
 
         stage('Building') {
             // Shell build step
